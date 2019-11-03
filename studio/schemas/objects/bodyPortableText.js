@@ -37,10 +37,19 @@ export default {
                 type: 'url'
               }
             ]
+          },
+          {
+            name:'pdf',
+            type:'file',
+            title:'PDF',
+            fields:[
+              {title:'Title', name:'title', type:'string'}
+            ]
           }
         ]
       },
-      of: [{type: 'authorReference'}]
+      of: [{type: 'authorReference'}],
+      
     },
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array
@@ -51,6 +60,11 @@ export default {
     },
     {
       type: 'code'
+    }, 
+    {
+      type:'file', 
+      name:'File', 
+      title: 'File'
     }
   ]
 }

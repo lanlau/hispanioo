@@ -5,9 +5,18 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // document schemas
+import page from './documents/page/page'
+
 import author from './documents/author'
-import category from './documents/category'
-import post from './documents/post'
+
+
+
+
+import blogCategory from './documents/blog/blog_category'
+import blogTag from './documents/blog/blog_tag'
+import blogPost from './documents/blog/blog_post'
+
+
 import siteSettings from './documents/siteSettings'
 
 // Object types
@@ -27,9 +36,17 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     siteSettings,
-    post,
-    category,
+
+    blogCategory,
+    blogTag,
+    blogPost,
+
+
+
     author,
+    page,
+
+
     mainImage,
     authorReference,
     bodyPortableText,

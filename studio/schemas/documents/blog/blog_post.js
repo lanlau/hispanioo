@@ -1,13 +1,14 @@
 import {format} from 'date-fns'
 
 export default {
-  name: 'post',
+  name: 'blog_post',
   type: 'document',
   title: 'Blog Post',
   fieldsets:[
-    {name: 'content', title:'Content',options:{collapsible: true, collapsed: true}}, 
+    {name: 'content', title:'Content',options:{collapsible: true, collapsed: false}}, 
+    {name: 'image', title:'Image',options:{collapsible: true, collapsed: true}}, 
+    {name: 'text', title:'text',options:{collapsible: true, collapsed: true}}, 
     {name: 'publishingOption', title:'Publishing Options',options:{collapsible: true, collapsed: true}},
-    
     {name: 'links', title: 'Linked to',options:{collapsible: true, collapsed: true}}
   ],
   fields: [
@@ -15,69 +16,80 @@ export default {
       name: 'title',
       type: 'string',
       title: 'Title',
-      description: 'Titles should be catchy, descriptive, and not too long',
-      fieldset: 'content'
+      fieldset: 'content', 
+      validation: Rule => Rule.required()
     },
     {
       name: 'slug',
       type: 'slug',
-      title: 'Slug',
-      description: 'Some frontends will require a slug to be set to be able to show the post',
+      title: 'Friendly URL',
       options: {
         source: 'title',
-        maxLength: 96
+        maxLength: 200
       },
-      fieldset: 'publishingOption'
+      fieldset: 'content'
     },
-    {
-      name: 'publishedAt',
-      type: 'datetime',
-      title: 'Published at',
-      description: 'This can be used to schedule post for publishing',
-      fieldset:'publishingOption'
-    },
+
     {
       name: 'mainImage',
       type: 'mainImage',
       title: 'Main image',
-      fieldset:'content',
+      fieldset:'image',
       options:{
         collapsible:true,
         collapsed:true
       }
     },
+  
     {
       name: 'excerpt',
       type: 'excerptPortableText',
       title: 'Excerpt',
-      fieldset:'content',
-      description:
-        'This ends up on summary pages, on Google, when people share your post in social media.'
+      fieldset:'text',
+      validation: Rule => Rule.required()
     },
     {
-      name: 'authors',
-      title: 'Authors',
-      type: 'array',
-      of: [
-        {
-          type: 'authorReference'
-        }
-      ],
-      fieldset:'links'
+        name: 'body',
+        type: 'bodyPortableText',
+        title: 'Body',
+        fieldset:'text',
+        validation: Rule => Rule.required()
+    }, 
+    
+    {
+        name: 'publishedAt',
+        type: 'datetime',
+        title: 'Published at',
+        description: 'This can be used to schedule post for publishing',
+        fieldset:'publishingOption',
+        validation: Rule => Rule.required()
+      },      
+    {
+      name: 'author',
+      title: 'Auteur',
+      type: 'reference',
+      to: 
+        [{
+          type: 'author'
+        }]
+      ,
+      fieldset:'links',
+      validation: Rule => Rule.required()
     },
     {
       name: 'categories',
       type: 'array',
-      title: 'Categories',
+      title: 'Catégories',
       of: [
         {
           type: 'reference',
           to: {
-            type: 'category'
+            type: 'blog_category'
           }
         }
       ],
-      fieldset:'links'
+      fieldset:'links',
+      validation: Rule => Rule.required()
     },{
       name: 'tags',
       type: 'array',
@@ -86,20 +98,35 @@ export default {
         {
           type: 'reference',
           to: {
-            type: 'tag'
+            type: 'blog_tag'
           }
         }
       ],
       fieldset:'links'          
-    },
-    {
-      name: 'body',
-      type: 'bodyPortableText',
-      title: 'Body',
-      fieldset:'content'
     }
   ],
-  orderings: [
+  orderings: [ 
+      {
+        name: 'byTitleAsc',
+        title: 'by Title asc',
+        by: [
+          {
+            field: 'title',
+            direction: 'asc'
+          }
+        ]          
+      },
+      {
+        name: 'byTitleDesc',
+        title: 'by Title desc',
+        by: [
+          {
+            field: 'title',
+            direction: 'desc'
+          }
+        ]          
+      },      
+      
     {
       name: 'publishingDateAsc',
       title: 'Publishing date new–>old',
