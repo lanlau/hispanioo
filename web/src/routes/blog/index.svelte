@@ -1,10 +1,10 @@
 <script context="module">
 	import client from '../../sanityClient'
 	import BlogCard from '../../components/BlogCard'
-import JsonVisualizer from '../../components/Json-visualizer'
+	import JsonVisualizer from '../../components/Json-visualizer'
 
-  import blocksToHtml from '@sanity/block-content-to-html'
-  import serializers from '../../components/serializers'
+  	import blocksToHtml from '@sanity/block-content-to-html'
+  	import serializers from '../../components/serializers'
 
 
 	export async function preload({ params, query }) {
@@ -12,12 +12,14 @@ import JsonVisualizer from '../../components/Json-visualizer'
 		const data=await client.fetch(
 			`{
 				"posts": *[_type=="blog_post" ]|order(sticky desc, publishedAt desc)[0...9]{title, sticky, categories[]->{title,"slug":slug.current}, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}},
-				"categories": *[_type=="blog_category" ] | order(title asc){title, "slug": slug.current}
+				"categories": *[_type=="blog_category" ] | order(title asc){title, "slug": slug.current},
+				"tags": *[_type=="blog_tag" ] | order(name asc){name, "slug": slug.current}
 			}`
 		);
 
 		const posts=data.posts;
 		const categories=data.categories;
+		const tags=data.tags;
 
 		const newPosts=posts.map( post=>
 			({
@@ -26,7 +28,7 @@ import JsonVisualizer from '../../components/Json-visualizer'
 			})
 		)
 
-		return { posts:[...newPosts], categories}
+		return { posts:[...newPosts], categories, tags}
 
 
 	}
@@ -35,6 +37,7 @@ import JsonVisualizer from '../../components/Json-visualizer'
 <script>
   export let posts=[];
   export let categories=[];
+  export let tags=[];
 
 
 </script>
@@ -55,7 +58,7 @@ import JsonVisualizer from '../../components/Json-visualizer'
 		{#each posts as post}
 
 					<BlogCard 
-						class=" mb-10 {post.sticky? 'bg-orange-200':''}"
+						class=" mb-10"
 						title={post.title}
 						description={post.excerpt }
 						categories={post.categories}
@@ -75,5 +78,11 @@ import JsonVisualizer from '../../components/Json-visualizer'
 			<a href="category/{category.slug}" 
 			class="helvetica text-gray-600 text-xs pl-8 pr-0 pt-5 pb-5 border-b border-gray-400 block hover:text-orange-600 capitalize">{category.title}</a>
 		{/each}
+
+		<h2 class="mt-5 mb-5">TAGS</h2>
+		{#each tags as tag}
+			<a href="tag/{tag.slug}" 
+			class="helvetica text-white text-xs p-1 mr-2  bg-orange-600 hover:bg-gray-800 capitalize">{tag.name}</a>
+		{/each}		
 	</section>	
 </section>

@@ -13,9 +13,14 @@ import {image as defaultImage} from '../defaults.js'
     
       <div class=" {$$props.class}">
         <div class=" bg-white rounded-lg overflow-hidden shadow relative">
-          <img class="h-56 w-full object-cover object-center" src="{image?image:defaultImage}" alt="">
+
+            <a rel=prefetch href="{slug}" class="m-0 p-0">
+              <img class="h-56 w-full object-cover object-center" src="{image?image:defaultImage}" alt="">
+            </a>
+
+          
           <div class="p-4 h-auto md:h-40 lg:h-48">
-            <a href="{slug}" class="block text-orange-500 hover:text-blue-600 font-semibold mb-2 text-lg md:text-base lg:text-lg">
+            <a href="{slug}" class="block text-orange-500 hover:text-gray-800 font-semibold mb-2 text-lg md:text-base lg:text-lg">
               {title}
             </a>
             <div class="w-full text-gray-600 text-sm leading-relaxed block md:text-xs lg:text-sm h-24 mb-1 ">

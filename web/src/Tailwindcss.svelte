@@ -9,6 +9,7 @@
   }
   h1,h2,h3,h4,h5,h6, a{
     font-family:"Roboto Slab";
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
   }
 
 
@@ -22,7 +23,7 @@
   }
 
   .page-content p{
-    @apply pt-10 pb-10;
+    @apply pt-5 pb-10;
   }
 
   .page-content a{

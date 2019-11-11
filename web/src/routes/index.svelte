@@ -3,7 +3,7 @@
   import JsonVisualizer from '../components/Json-visualizer'
   import Hero from '../components/Hero'
   import Card from '../components/Card'
-  import HCard from '../components/HCard'
+  import BlogCard from '../components/BlogCard'
 
   import blocksToHtml from '@sanity/block-content-to-html'
   import serializers from '../components/serializers'
@@ -13,8 +13,8 @@
 
 		const data=await client.fetch(
 			`{
-				"pages":*[_type=="page" && !defined(parent)]{title, description, "slug":slug.current, "image":image.asset->.url},
-				"posts": *[_type=="blog_post" && !defined(parent)]|order(sticky desc, publishedAt desc)[0...9]{title, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
+				"pages":*[_type=="page" && !defined(parent)]| order(title asc){title, description, "slug":slug.current, "image":image.asset->.url},
+				"posts": *[_type=="blog_post" && !defined(parent)]|order(sticky desc, publishedAt desc)[0...9]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
 			}`
 		);
 
@@ -72,22 +72,25 @@
 	{/if}
 	</div>
 
-	<h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-lg  border-b">A lire sur le blog</h1>
+	<h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-3xl border-b">A lire sur le blog</h1>
 	{#if data}
-	{#each data.posts as post}
+		<div class="flex flex-wrap">
+		{#each data.posts as post}
 
-				<HCard 
-					class=" lg:flex w-full md:mx-2 mb-4 {post.sticky? 'bg-orange-200':''}"
-					title={post.title}
-					description={post.excerpt }
-					image={post.mainImage}
-					author={post.author}
-					slug="blog/{post.slug}"
-					date={post.publishedAt}
-					sticky={post.sticky}
-				/>
-				
-	{/each}
+						<BlogCard 
+							class="w-1/2 p-2 mb-10"
+							title={post.title}
+							description={post.excerpt }
+							categories={post.categories}
+							image={post.mainImage}
+							author={post.author}
+							slug="blog/{post.slug}"
+							date={post.publishedAt}
+							sticky={post.sticky}
+						/>
+					
+		{/each}
+		</div>
 	{/if}
 </div>
 

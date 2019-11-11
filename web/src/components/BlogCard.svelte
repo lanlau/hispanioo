@@ -1,5 +1,5 @@
 <script>
-    
+    import {image as defaultImage} from '../defaults.js'
     export let title=""
     export let date;
     export let description=""
@@ -23,12 +23,12 @@
 
 </script>
 
-<article class="{$$props.class } border-b-8 border-gray-200">
+<article class="{$$props.class } border-b-8 border-gray-400">
   <div>
-    {#if sticky}
-        <span class="text-orange-600 text-5xl float-left ml-1 p-0 leading-none absolute">&#9733;</span>
-    {/if}  
-    <img src="{image}?w=1000&format=auto" alt={title} class="w-full  object-cover border-b-4 border-gray-200" style="height:17rem"/>
+    <a rel=prefetch href="blog/{slug}" class="m-0 p-0">
+      <img src="{image?image:defaultImage}?w=1000&format=auto" alt={title} class="w-full  object-cover border-b-4 border-gray-200 shadow" style="height:17rem"/>
+    </a>
+    
 
   </div>
   <div class="sm:flex">
@@ -39,14 +39,14 @@
         <span class="text-xs uppercase">{getMonthYear(date)}</span>
     </div>
   </div>
-  <div class="sm:w-3/4  rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+  <div class="sm:w-3/4  rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal {sticky? 'bg-orange-200':''}">
     <div class="mb-8">
       <div class=" text-2xl mb-2 hover:text-orange-600"><a rel=prefetch href="{slug}">{title}</a></div>
       <div class="text-xs mb-4 text-gray-600 font-light">
-        by {author.name} in
+        Par {author.name} dans
         {#each categories as  category, idx}
             {#if idx>0}, {/if} 
-            <a class="text-orange-600 capitalize text-xs font-light" rel=prefetch href="{category.slug}">{category.title}</a>
+            <a class="text-orange-600 capitalize text-xs font-light" rel=prefetch href="category/{category.slug}">{category.title}</a>
             
         {/each}
     </div>
@@ -54,7 +54,7 @@
     </div>
     {#if author}
     <div class="flex items-center">
-      <button class="bg-orange-600 text-white pt-2 pb-2 pl-6 pr-6 font-light hover:bg-gray-800">Lire la suite →</button>
+      <a class="bg-orange-600 text-white pt-2 pb-2 pl-6 pr-6 font-light hover:bg-gray-800" href="{slug}">Lire la suite →</a>
     </div>
     {/if}
   </div>  

@@ -12,8 +12,8 @@
 
 </script>
 
-<div class={$$props.class}>
-  <div class="flex-none  lg:h-auto lg:w-64  bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" 
+<div class="{$$props.class} shadow">
+  <div class="flex-none  lg:h-auto lg:w-64  bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden " 
   style="background-image: url({image})" title="{title}">
   {#if sticky}
     <span class="text-orange-600 text-5xl float-left ml-1 p-5 leading-none">&#9733;</span>
@@ -23,7 +23,7 @@
   lg:border-grey-light---->
   <div class="flex-grow  rounded-b lg:rounded-b-none lg:rounded-r p-2 flex flex-col justify-between leading-normal">
     <div class="mb-8">
-      <div class=" font-bold text-xl mb-2"><a rel=prefetch href="{slug}">{title}</a></div>
+      <div class=" text-2xl mb-2 hover:text-orange-600"><a rel=prefetch href="{slug}">{title}</a></div>
       
       <p class="text-grey-darker text-base">{@html description}</p>
     </div>
