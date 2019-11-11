@@ -3,7 +3,9 @@
   import JsonVisualizer from '../components/Json-visualizer'
   import Hero from '../components/Hero'
   import Card from '../components/Card'
-  import BlogCard from '../components/BlogCard'
+
+  import BlogList from '../components/blog/BlogList'
+  import PageList from '../components/page/PageList'
 
   import blocksToHtml from '@sanity/block-content-to-html'
   import serializers from '../components/serializers'
@@ -41,7 +43,7 @@
 
 </script>
 <script>
-	export let data=null;
+	export let data={};
 
 </script>
 
@@ -56,42 +58,11 @@
 <Hero image="traduction-localisation.jpg"/>
 
 <div class="w-full  py-6 ">
-	<div class="flex w-full">
-	{#if data && data.pages}
-		<div class="block md:flex justify-between md:-mx-2 min-w-0">
-			{#each data.pages as page}
-				<Card 
-					class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0"
-					title={page.title}
-					description={page.description}
-					image={page.image}
-					slug="page/{page.slug}"
-				/>
-			{/each}
-		</div>
-	{/if}
-	</div>
+
+	<PageList pages={data.pages} class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0"/>
 
 	<h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-3xl border-b">A lire sur le blog</h1>
-	{#if data}
-		<div class="flex flex-wrap">
-		{#each data.posts as post}
-
-						<BlogCard 
-							class="w-1/2 p-2 mb-10"
-							title={post.title}
-							description={post.excerpt }
-							categories={post.categories}
-							image={post.mainImage}
-							author={post.author}
-							slug="blog/{post.slug}"
-							date={post.publishedAt}
-							sticky={post.sticky}
-						/>
-					
-		{/each}
-		</div>
-	{/if}
+	<BlogList posts={data.posts} class="w-1/2 p-2 mb-10"/>
 </div>
 
 

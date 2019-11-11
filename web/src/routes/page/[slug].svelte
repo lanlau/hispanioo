@@ -5,7 +5,7 @@
   import JsonVisualizer from '../../components/Json-visualizer'
 
   import Hero from '../../components/Hero'
-import Card from '../../components/Card'
+import PageList from '../../components/page/PageList'
 
 
 	export async function preload({ params }) {
@@ -18,6 +18,7 @@ import Card from '../../components/Card'
     const projection = `{
       ...,
       "image":image.asset->.url,
+      parent->{title,"slug":slug.current},
       content[]{
         ...,
         markDefs[]{...,_type=="pdf"=>{_type,asset->{url}}},
@@ -74,29 +75,23 @@ import Card from '../../components/Card'
 <svelte:head>
 	<title>{post.title}</title>
 </svelte:head>
+<h1 class="title">
+    {#if post.parent}
+      <a href="page/{post.parent.slug}" class="title hover:text-black">{post.parent.title}</a> >
+    {/if}
+     
+    <span class="text-black">{post.title}</span>
+</h1>
 
-<h1 class="title">{post.title}</h1>
 <Hero image={post.image} class="mb-10"/>
 <div class='page-content'>
 	{#if post.description}<div>{ post.description}</div>{/if}
 	<div>{@html post.content}</div>
 </div>
-<div class=" w-full">
-{#if childrenPages }
-    <div class="block md:flex justify-between md:-mx-2 min-w-0">
-        {#each childrenPages as page}
-            <Card 
-                class="w-full lg:w-1/3 sm:w-1/3 md:w-1/3 md:mx-2 mb-4 md:mb-0"
-                title={page.title}
-                description={page.description}
-                image={page.image}
-                slug="page/{page.slug}"
-            />
-        {/each}
-    </div>
-{/if}
-</div>
 
-<JsonVisualizer code={childrenPages}/>
+
+<PageList pages={childrenPages} class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0"/>
+
+<JsonVisualizer code={post}/>
 
 

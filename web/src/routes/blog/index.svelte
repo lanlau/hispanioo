@@ -1,6 +1,7 @@
 <script context="module">
 	import client from '../../sanityClient'
-	import BlogCard from '../../components/BlogCard'
+	import BlogList from '../../components/blog/BlogList'
+
 	import JsonVisualizer from '../../components/Json-visualizer'
 
   	import blocksToHtml from '@sanity/block-content-to-html'
@@ -54,23 +55,7 @@
 <section class="sm:flex">
 
 	<section class="md:w-4/6 pr-2">
-		{#if posts}
-		{#each posts as post}
-
-					<BlogCard 
-						class=" mb-10"
-						title={post.title}
-						description={post.excerpt }
-						categories={post.categories}
-						image={post.mainImage}
-						author={post.author}
-						slug="blog/{post.slug}"
-						date={post.publishedAt}
-						sticky={post.sticky}
-					/>
-					
-		{/each}
-		{/if}
+		<BlogList posts={posts} class="mb-10"/>
 	</section>
 	<section class="md:w-2/6 pl-2">
 		<h2 class="">CATEGORIES</h2>

@@ -1,10 +1,10 @@
 <script context="module">
-  import client from '../../sanityClient'
-  import JsonVisualizer from '../../components/Json-visualizer'
- import BlogCard from '../../components/BlogCard'
+    import client from '../../sanityClient'
+    import JsonVisualizer from '../../components/Json-visualizer'
+    import BlogList from '../../components/blog/BlogList'
 
-  import blocksToHtml from '@sanity/block-content-to-html'
-  import serializers from '../../components/serializers'
+    import blocksToHtml from '@sanity/block-content-to-html'
+    import serializers from '../../components/serializers'
 
 	export async function preload({ params, query }) {
 
@@ -52,25 +52,9 @@
 </svelte:head>
 
 <h1 class="title"><a href="blog" class="title hover:text-black">Blog</a> > <a href="tag" class="title hover:text-black">Tags</a> > <span class="text-black">{data.tag.name}</span></h1>
-	{#if data}
-		<div class="flex flex-wrap">
-		{#each data.posts as post}
 
-						<BlogCard 
-							class="w-1/2 p-2 mb-10"
-							title={post.title}
-							description={post.excerpt }
-							categories={post.categories}
-							image={post.mainImage}
-							author={post.author}
-							slug="blog/{post.slug}"
-							date={post.publishedAt}
-							sticky={post.sticky}
-						/>
-					
-		{/each}
-		</div>
-	{/if}
+<BlogList posts={data.posts} class="w-1/2 p-2 mb-10"/>
+
 <JsonVisualizer code={data}/>
 
 

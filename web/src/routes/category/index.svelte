@@ -1,6 +1,6 @@
 <script context="module">
 	import client from '../../sanityClient'
-	import BlogCard from '../../components/BlogCard'
+
 	import JsonVisualizer from '../../components/Json-visualizer'
 
   	import blocksToHtml from '@sanity/block-content-to-html'
