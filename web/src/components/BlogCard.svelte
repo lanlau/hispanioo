@@ -28,7 +28,7 @@
     {#if sticky}
         <span class="text-orange-600 text-5xl float-left ml-1 p-0 leading-none absolute">&#9733;</span>
     {/if}  
-    <img src={image} alt={title} class="w-full  object-cover border-b-4 border-gray-200" style="height:17rem"/>
+    <img src="{image}?w=1000&format=auto" alt={title} class="w-full  object-cover border-b-4 border-gray-200" style="height:17rem"/>
 
   </div>
   <div class="sm:flex">
