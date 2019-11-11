@@ -7,7 +7,6 @@ import {image as defaultImage} from '../defaults.js'
     export let slug=""
     export let keywords=null
     export let categories=null
-
 </script>
 
 
