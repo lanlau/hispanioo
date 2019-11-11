@@ -55,7 +55,7 @@
 
 <Hero image="traduction-localisation.jpg"/>
 
-<div class="w-full  py-6">
+<div class="w-full  py-6 ">
 	<div class="flex w-full">
 	{#if data && data.pages}
 		<div class="block md:flex justify-between md:-mx-2 min-w-0">

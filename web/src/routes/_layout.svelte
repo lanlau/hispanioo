@@ -11,6 +11,6 @@
 <Tailwindcss/>
 <Nav {segment}/>
 
-<main class="container mx-auto py-24">
+<main class="container mx-auto py-24 px-2">
 	<slot></slot>
 </main>
