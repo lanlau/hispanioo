@@ -2,7 +2,6 @@
   import client from '../sanityClient'
   import JsonVisualizer from '../components/Json-visualizer'
   import Hero from '../components/Hero'
-  import Card from '../components/Card'
 
   import BlogList from '../components/blog/BlogList'
   import PageList from '../components/page/PageList'
