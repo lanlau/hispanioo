@@ -42,4 +42,3 @@
 			class="helvetica text-gray-600 text-xs pl-8 pr-0 pt-5 pb-5 border-b border-gray-400 block hover:text-orange-600 capitalize">{category.title}</a>
 		{/each}		
 </section>
-<JsonVisualizer code={categories}/>	

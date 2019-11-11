@@ -46,7 +46,7 @@ export default {
   
     {
       name: 'excerpt',
-      type: 'excerptPortableText',
+      type: 'text',
       title: 'Excerpt',
       fieldset:'text',
       validation: Rule => Rule.required()

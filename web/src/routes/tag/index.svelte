@@ -41,4 +41,3 @@
         class="helvetica text-white text-xs p-1 mr-2  bg-orange-600 hover:bg-gray-800 capitalize">{tag.name}</a>
     {/each}		
 </section>
-<JsonVisualizer code={tags}/>	

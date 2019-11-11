@@ -16,22 +16,9 @@
 			}`
 		, { slug });
 
-		const posts=data.posts;
-
-		const newposts=posts.map( post=>
-			({
-				...post,
-				excerpt: blocksToHtml({blocks:post.excerpt, serializers, ...client.clientConfig})
-			})
-		)
 
 		return {
-			data:{
-				...data,
-				posts:[
-					...newposts
-				]
-			}
+			data
 		}
 	}
 
@@ -53,9 +40,9 @@
 
 <h1 class="title"><a href="blog" class="title hover:text-black">Blog</a> > <a href="tag" class="title hover:text-black">Tags</a> > <span class="text-black">{data.tag.name}</span></h1>
 
-<BlogList posts={data.posts} class="w-1/2 p-2 mb-10"/>
+<BlogList posts={data.posts} class="w-full lg:w-1/2 p-2 mb-10"/>
 
-<JsonVisualizer code={data}/>
+
 
 
 

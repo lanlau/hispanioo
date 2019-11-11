@@ -89,9 +89,6 @@ import PageList from '../../components/page/PageList'
 	<div>{@html post.content}</div>
 </div>
 
-
-<PageList pages={childrenPages} class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0"/>
-
-<JsonVisualizer code={post}/>
+<PageList pages={childrenPages}/>
 
 

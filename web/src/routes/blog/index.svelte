@@ -22,14 +22,8 @@
 		const categories=data.categories;
 		const tags=data.tags;
 
-		const newPosts=posts.map( post=>
-			({
-				...post,
-				excerpt: blocksToHtml({blocks:post.excerpt, serializers, ...client.clientConfig})
-			})
-		)
 
-		return { posts:[...newPosts], categories, tags}
+		return { posts, categories, tags}
 
 
 	}

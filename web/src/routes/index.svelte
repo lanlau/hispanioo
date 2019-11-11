@@ -19,22 +19,9 @@
 			}`
 		);
 
-		const posts=data.posts;
-
-		const newposts=posts.map( post=>
-			({
-				...post,
-				excerpt: blocksToHtml({blocks:post.excerpt, serializers, ...client.clientConfig})
-			})
-		)
 
 		return {
-			data:{
-				...data,
-				posts:[
-					...newposts
-				]
-			}
+			data
 		}
 	}
 
@@ -58,10 +45,10 @@
 
 <div class="w-full  py-6 ">
 
-	<PageList pages={data.pages} class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0"/>
+	<PageList pages={data.pages} />
 
 	<h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-3xl border-b">A lire sur le blog</h1>
-	<BlogList posts={data.posts} class="w-1/2 p-2 mb-10"/>
+	<BlogList posts={data.posts} class="w-full lg:w-1/2  p-2 mb-10"/>
 </div>
 
 

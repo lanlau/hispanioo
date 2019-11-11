@@ -59,7 +59,7 @@
       ...post,
   
       
-      excerpt: blocksToHtml({blocks: post.excerpt, serializers: {marks:{pdf, link}}, ...client.clientConfig }),
+      
       body2: blocksToHtml({blocks: post.body, serializers: {marks:{pdf, link}}, ...client.clientConfig })
     } };
   }
@@ -113,6 +113,5 @@
     </p>
 </div>
 {/if}
-<JsonVisualizer code={post.tags}/>
 
 
