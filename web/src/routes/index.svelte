@@ -1,81 +1,98 @@
 <script context="module">
   import client from '../sanityClient'
   import JsonVisualizer from '../components/Json-visualizer'
+  import Hero from '../components/Hero'
+  import Card from '../components/Card'
+  import HCard from '../components/HCard'
 
-
+  import blocksToHtml from '@sanity/block-content-to-html'
+  import serializers from '../components/serializers'
 
 	export async function preload({ params, query }) {
 
 
-		const res=await client.fetch('*[_type=="page" && !defined(parent)]{title, "slug":slug.current, "image":image.asset->.url}');
-		const pages=res
+		const data=await client.fetch(
+			`{
+				"pages":*[_type=="page" && !defined(parent)]{title, description, "slug":slug.current, "image":image.asset->.url},
+				"posts": *[_type=="blog_post" && !defined(parent)]|order(sticky desc, publishedAt desc)[0...9]{title, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
+			}`
+		);
 
-		const res2=await client.fetch('*[_type=="blog_post" && !defined(parent)][0...9]{title, "slug":slug.current, "image":image.asset->.url}');
-		const blogs=res2;
+		const posts=data.posts;
+
+		const newposts=posts.map( post=>
+			({
+				...post,
+				excerpt: blocksToHtml({blocks:post.excerpt, serializers, ...client.clientConfig})
+			})
+		)
 
 		return {
-			pages,
-			blogs
+			data:{
+				...data,
+				posts:[
+					...newposts
+				]
+			}
 		}
-		/*return client.fetch('*[_type=="page" && !defined(parent)]{title, "slug":slug.current, "image":image.asset->.url}').then(pages => {
-				return { pages };
-			}).catch(err => this.error(500, err));*/
 	}
 
 
 
 </script>
 <script>
-	export let pages;
-	export let blogs;
+	export let data=null;
+
 </script>
 
 <style>
-	h1 {
-		text-align: center;
-		margin: 0 auto;
-	}
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-
-
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
-
-	div{
-		margin:20px;
-		padding:20px;
-		border:1px solid red
-	}
 </style>
 
 <svelte:head>
 	<title>Sapper project template</title>
 </svelte:head>
 
-<h1>My super blog!</h1>
-<h2>Pages</h2>
-{#if pages}
-{#each pages as page}
-<div>{page.title}</div>
-{/each}
-{/if}
-<h2>Derniers billets</h2>
-{#if blogs}
-{#each blogs as blog}
-<div>{blog.title}</div>
-{/each}
-{/if}
+<Hero image="traduction-localisation.jpg"/>
+
+<div class="w-full  py-6">
+	<div class="flex w-full">
+	{#if data && data.pages}
+		<div class="block md:flex justify-between md:-mx-2 min-w-0">
+			{#each data.pages as page}
+				<Card 
+					class="w-full lg:w-1/3 md:mx-2 mb-4 md:mb-0"
+					title={page.title}
+					description={page.description}
+					image={page.image}
+					slug="page/{page.slug}"
+				/>
+			{/each}
+		</div>
+	{/if}
+	</div>
+
+	<h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-lg  border-b">A lire sur le blog</h1>
+	{#if data}
+	{#each data.posts as post}
+
+				<HCard 
+					class=" lg:flex w-full md:mx-2 mb-4 {post.sticky? 'bg-orange-200':''}"
+					title={post.title}
+					description={post.excerpt }
+					image={post.mainImage}
+					author={post.author}
+					slug="blog/{post.slug}"
+					date={post.publishedAt}
+					sticky={post.sticky}
+				/>
+				
+	{/each}
+	{/if}
+</div>
+
+
+
 
 
 

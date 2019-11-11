@@ -31,7 +31,7 @@
 
 </style>
 
-<div class="code">
+<div class="code z-50">
   <button on:click={toggle}>Toggle Code</button>
   {#if showCode}
   <pre>{JSON.stringify(code,null,2)}</pre>

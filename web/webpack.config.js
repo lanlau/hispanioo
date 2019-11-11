@@ -1,3 +1,7 @@
+//import sveltePreprocess from 'svelte-preprocess';
+
+const sveltePreprocess = require('svelte-preprocess');
+//import preprocess from 'svelte/types/compiler/preprocess';
 const webpack = require('webpack');
 const config = require('sapper/config/webpack.js');
 const pkg = require('./package.json');
@@ -22,7 +26,8 @@ module.exports = {
 						options: {
 							dev,
 							hydratable: true,
-							hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
+							hotReload: true, // pending https://github.com/sveltejs/svelte/issues/2377, 
+							preprocess: sveltePreprocess({postcss:true})
 						}
 					}
 				}
@@ -55,7 +60,9 @@ module.exports = {
 						options: {
 							css: false,
 							generate: 'ssr',
-							dev
+							dev,
+							preprocess: sveltePreprocess({postcss:true}),
+
 						}
 					}
 				}

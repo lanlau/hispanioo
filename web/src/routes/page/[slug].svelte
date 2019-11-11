@@ -1,0 +1,102 @@
+<script context="module">
+  import blocksToHtml from '@sanity/block-content-to-html'
+  import client from '../../sanityClient'
+  import serializers from '../../components/serializers'
+  import JsonVisualizer from '../../components/Json-visualizer'
+
+  import Hero from '../../components/Hero'
+import Card from '../../components/Card'
+
+
+	export async function preload({ params }) {
+
+		// the `slug` parameter is available because
+    // this file is called [slug].html
+    const { slug } = params
+    const filter = '*[_type == "page" && slug.current == $slug][0]'
+
+    const projection = `{
+      ...,
+      "image":image.asset->.url,
+      content[]{
+        ...,
+        markDefs[]{...,_type=="pdf"=>{_type,asset->{url}}},
+      }
+    }`
+
+    const query = filter + projection
+    const post = await client.fetch(query, { slug }).catch(err => this.error(500, err))
+
+
+    const childrenPages = await client.fetch('*[_type=="page" && parent._ref == $id]{title, description, "slug":slug.current, "image":image.asset->.url}', { id:post._id }).catch(err => this.error(500, err))
+    
+
+    const h = blocksToHtml.h
+    const pdf=props=>(
+      h('a',{target:"_blank",href:props.mark.asset.url}, props.children)
+    )
+
+    const mainImage=props=>(
+      h('img',{src:props.url}, props.children)
+    )
+
+    const link= props=>{
+      return (
+      h('a', {target:"_blank", href:props.mark.href}, props.children)
+    )} 
+
+  
+    return { post: {
+      ...post,
+  
+      //image: blocksToHtml({blocks:post.image, serializers, ...client.clientConfig}),
+      
+      content: blocksToHtml({blocks: post.content, serializers: {marks:{pdf, link}}, ...client.clientConfig })
+    },
+    childrenPages };
+  }
+
+
+</script>
+
+<script>
+  export let post;
+  export let childrenPages;
+
+</script>
+
+<style>
+
+
+
+</style>
+
+<svelte:head>
+	<title>{post.title}</title>
+</svelte:head>
+
+<h1 class="title">{post.title}</h1>
+<Hero image={post.image} class="mb-10"/>
+<div class='page-content'>
+	{#if post.description}<div>{ post.description}</div>{/if}
+	<div>{@html post.content}</div>
+</div>
+<div class=" w-full">
+{#if childrenPages }
+    <div class="block md:flex justify-between md:-mx-2 min-w-0">
+        {#each childrenPages as page}
+            <Card 
+                class="w-full lg:w-1/3 sm:w-1/3 md:w-1/3 md:mx-2 mb-4 md:mb-0"
+                title={page.title}
+                description={page.description}
+                image={page.image}
+                slug="page/{page.slug}"
+            />
+        {/each}
+    </div>
+{/if}
+</div>
+
+<JsonVisualizer code={childrenPages}/>
+
+

@@ -1,40 +1,79 @@
 <script context="module">
-  import client from '../../sanityClient'
-	export function preload({ params, query }) {
-    return client.fetch('*[_type == "blog_post" && defined(slug.current) && publishedAt < now()]|order(publishedAt desc)').then(posts => {
-			return { posts };
-		}).catch(err => this.error(500, err));
+	import client from '../../sanityClient'
+	import BlogCard from '../../components/BlogCard'
+import JsonVisualizer from '../../components/Json-visualizer'
+
+  import blocksToHtml from '@sanity/block-content-to-html'
+  import serializers from '../../components/serializers'
+
+
+	export async function preload({ params, query }) {
+
+		const data=await client.fetch(
+			`{
+				"posts": *[_type=="blog_post" ]|order(sticky desc, publishedAt desc)[0...9]{title, sticky, categories[]->{title,"slug":slug.current}, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}},
+				"categories": *[_type=="blog_category" ] | order(title asc){title, "slug": slug.current}
+			}`
+		);
+
+		const posts=data.posts;
+		const categories=data.categories;
+
+		const newPosts=posts.map( post=>
+			({
+				...post,
+				excerpt: blocksToHtml({blocks:post.excerpt, serializers, ...client.clientConfig})
+			})
+		)
+
+		return { posts:[...newPosts], categories}
+
+
 	}
 </script>
 
 <script>
-  export let posts;
+  export let posts=[];
+  export let categories=[];
 
-  function formatDate(date) {
-    return new Date(date).toLocaleDateString()
-  }
+
 </script>
 
 <style>
-	ul {
-		margin: 0 0 1em 0;
-		line-height: 1.5;
-	}
+
 </style>
 
 <svelte:head>
-	<title>Blog</title>
+	<title>BLOG</title>
 </svelte:head>
 
-<h1>Recent posts</h1>
+<h1 class="title">Blog</h1>
+<section class="sm:flex">
 
-<ul>
-	{#each posts as post}
-		<!-- we're using the non-standard `rel=prefetch` attribute to
-				tell Sapper to load the data for the page as soon as
-				the user hovers over the link or taps it, instead of
-				waiting for the 'click' event -->
-		<li><a rel='prefetch' href='blog/{post.slug.current}'>{post.title}</a> ({formatDate(post.publishedAt)})
-	</li>
-	{/each}
-</ul>
+	<section class="md:w-4/6 pr-2">
+		{#if posts}
+		{#each posts as post}
+
+					<BlogCard 
+						class=" mb-10 {post.sticky? 'bg-orange-200':''}"
+						title={post.title}
+						description={post.excerpt }
+						categories={post.categories}
+						image={post.mainImage}
+						author={post.author}
+						slug="blog/{post.slug}"
+						date={post.publishedAt}
+						sticky={post.sticky}
+					/>
+					
+		{/each}
+		{/if}
+	</section>
+	<section class="md:w-2/6 pl-2">
+		<h2 class="">CATEGORIES</h2>
+		{#each categories as category}
+			<a href="category/{category.slug}" 
+			class="helvetica text-gray-600 text-xs pl-8 pr-0 pt-5 pb-5 border-b border-gray-400 block hover:text-orange-600 capitalize">{category.title}</a>
+		{/each}
+	</section>	
+</section>

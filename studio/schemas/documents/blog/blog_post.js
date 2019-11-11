@@ -4,6 +4,9 @@ export default {
   name: 'blog_post',
   type: 'document',
   title: 'Blog Post',
+  initialValue:{
+    sticky:false
+  },
   fieldsets:[
     {name: 'content', title:'Content',options:{collapsible: true, collapsed: false}}, 
     {name: 'image', title:'Image',options:{collapsible: true, collapsed: true}}, 
@@ -55,7 +58,13 @@ export default {
         fieldset:'text',
         validation: Rule => Rule.required()
     }, 
-    
+    {
+      name: 'sticky',
+      type: 'boolean',
+      title: 'Promoted on homepage',
+      description: 'This post will appear in the front page on top of the list',
+      fieldset:'publishingOption'
+    },     
     {
         name: 'publishedAt',
         type: 'datetime',
@@ -63,7 +72,7 @@ export default {
         description: 'This can be used to schedule post for publishing',
         fieldset:'publishingOption',
         validation: Rule => Rule.required()
-      },      
+    },      
     {
       name: 'author',
       title: 'Auteur',
