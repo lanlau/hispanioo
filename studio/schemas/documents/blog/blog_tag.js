@@ -7,7 +7,16 @@ export default {
         name: 'name',
         type: 'string',
         title: 'Name'
-      }
+      },
+      {
+        name: 'slug',
+        type: 'slug',
+        title: 'Friendly URL',
+        options: {
+          source: 'name',
+          maxLength: 200
+        }
+      }      
     ]
   }
   
