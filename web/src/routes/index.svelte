@@ -1,23 +1,29 @@
 <script context="module">
-  import client from '../sanityClient'
-  import JsonVisualizer from '../components/Json-visualizer'
-  import Hero from '../components/Hero'
 
-  import BlogList from '../components/blog/BlogList'
-  import PageList from '../components/page/PageList'
+	
 
-  import blocksToHtml from '@sanity/block-content-to-html'
-  import serializers from '../components/serializers'
+	import client from '../sanityClient'
+	
+	import JsonVisualizer from '../components/Json-visualizer'
+	import Hero from '../components/Hero'
+
+	import BlogList from '../components/blog/BlogList'
+	import PageList from '../components/page/PageList'
+
+	import blocksToHtml from '@sanity/block-content-to-html'
+	import serializers from '../components/serializers'
 
 	export async function preload({ params, query }) {
 
+		const nbPosts=await client.fetch('*[_id == "siteSettings"].homePosts[0]')
 
+		
 		const data=await client.fetch(
 			`{
 				"pages":*[_type=="page" && !defined(parent)]| order(title asc){title, description, "slug":slug.current, "image":image.asset->.url},
-				"posts": *[_type=="blog_post" && !defined(parent)]|order(sticky desc, publishedAt desc)[0...9]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
+				"posts": *[_type=="blog_post" && !defined(parent)]|order(sticky desc, publishedAt desc)[0...$nbPosts]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
 			}`
-		);
+		,{nbPosts});
 
 
 		return {
@@ -29,6 +35,10 @@
 
 </script>
 <script>
+	import { getContext } from 'svelte';
+
+  $: defaults=getContext('defaults');
+
 	export let data={};
 
 </script>
@@ -38,10 +48,12 @@
 </style>
 
 <svelte:head>
-	<title>Sapper project template</title>
+	<title>{defaults.title}</title>
 </svelte:head>
 
-<Hero image="traduction-localisation.jpg"/>
+
+
+<Hero image={defaults.homeHeroImage}/>
 
 <div class="w-full  py-6 ">
 

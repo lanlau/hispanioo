@@ -8,13 +8,14 @@
 
 	export async function preload({ params, query }) {
 
-        const { slug } = params
+		const { slug } = params
+		const nbPosts=await client.fetch('*[_id == "siteSettings"].blogPostsPerPage[0]')
 		const data=await client.fetch(
 			`{
                 "tag":*[_type=="blog_tag" && slug.current == $slug]{name}[0],
-                "posts": *[_type=="blog_post" && $slug in tags[]->.slug.current]|order(sticky desc, publishedAt desc)[0...9]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
+                "posts": *[_type=="blog_post" && $slug in tags[]->.slug.current]|order(sticky desc, publishedAt desc)[0...$nbPosts]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
 			}`
-		, { slug });
+		, { slug, nbPosts });
 
 
 		return {

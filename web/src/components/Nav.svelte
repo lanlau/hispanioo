@@ -2,6 +2,10 @@
   export let segment;
   
   let menuOpen=false;
+
+	import { getContext } from 'svelte';
+  $: defaults=getContext('defaults');
+
 </script>
 
 <style>
@@ -29,7 +33,7 @@
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between py-4">
         <div>
-          <a href="/" class="menu font-semibold text-xl tracking-tight p-0">Hispanioo <span class="text-sm block text-orange-600">Descubro luego soy</span></a>
+          <a href="/" class="menu font-semibold text-xl tracking-tight p-0">{defaults.title} <span class="text-sm block text-orange-600">{defaults.subtitle}</span></a>
         </div>
 
         <div class="hidden sm:flex sm:items-center">

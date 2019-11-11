@@ -1,5 +1,9 @@
 
 <script>
+	import { getContext } from 'svelte';
+  $: defaults=getContext('defaults');
+
+
 import {image as defaultImage} from '../../defaults.js'
     export let title=""
     export let description=""
@@ -15,7 +19,7 @@ import {image as defaultImage} from '../../defaults.js'
         <div class=" bg-white rounded-lg overflow-hidden shadow relative">
 
             <a rel=prefetch href="{slug}" class="m-0 p-0">
-              <img class="h-56 w-full object-cover object-center" src="{image?image:defaultImage}" alt="">
+              <img class="h-56 w-full object-cover object-center" src="{image?image:defaults.defaultImage}?w=1000&format=auto" alt="">
             </a>
 
           

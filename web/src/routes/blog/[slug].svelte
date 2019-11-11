@@ -72,10 +72,6 @@
 
 <script>
   export let post={categories:[],tags:[]};
-  
-
-
-
 </script>
 
 <style>
@@ -113,5 +109,6 @@
     </p>
 </div>
 {/if}
+
 
 

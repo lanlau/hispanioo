@@ -1,4 +1,9 @@
 <script>
+	import { getContext } from 'svelte';
+
+  $: defaults=getContext('defaults');
+
+
     import {image as defaultImage} from '../../defaults.js'
     export let title=""
     export let date;
@@ -23,10 +28,11 @@
 
 </script>
 
+
 <article class="{$$props.class } border-b-8 border-gray-400">
   <div>
     <a rel=prefetch href="blog/{slug}" class="m-0 p-0">
-      <img src="{image?image:defaultImage}?w=1000&format=auto" alt={title} class="w-full  object-cover border-b-4 border-gray-200 shadow" style="height:17rem"/>
+      <img src="{image?image:defaults.defaultImage}?w=1000&format=auto" alt={title} class="w-full  object-cover border-b-4 border-gray-200 shadow" style="height:17rem"/>
     </a>
     
 

@@ -10,27 +10,51 @@ export default {
       title: 'Title'
     },
     {
+      name: 'subtitle',
+      type: 'string',
+      title: 'Sub Title'
+    },
+
+    {
       name: 'description',
       type: 'text',
       title: 'Description',
-      description: 'Describe your blog for search engines and social media.'
+      description: 'Uniquement utilisée pour SEO'
     },
     {
       name: 'keywords',
       type: 'array',
       title: 'Keywords',
-      description: 'Add keywords that describes your blog.',
+      description: 'Mots clés utilisés pour SEO',
       of: [{type: 'string'}],
       options: {
         layout: 'tags'
       }
     },
     {
-      name: 'author',
-      type: 'reference',
-      description: 'Publish an author and set a reference to them here.',
-      title: 'Author',
-      to: [{type: 'author'}]
-    }
+      name: 'homeHeroImage',
+      type: 'image',
+      title: 'Home hero image',
+      description: 'Image utilisée sur la page d\'accueil'
+    }, 
+    {
+      name: 'homePosts',
+      title:'Home nombre posts affichés',
+      type:'number',
+      description:'Nombre de posts sur la page d\'accueil'
+    },    
+    {
+      name: 'blogPostsPerPage',
+      title:'Blog nombre posts per page',
+      type:'number',
+      description:'Nombre de posts par page'
+    },
+    {
+      name: 'defaultImage',
+      type: 'image',
+      title: 'Blog post ou page image par défaut',
+      description: 'Image par défaut utilisée pour les posts et pages si aucune trouvée'
+    },    
+
   ]
 }
