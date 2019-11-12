@@ -34,4 +34,13 @@
   .page-content ul{
     @apply list-disc ml-5
   }
+
+
+  .primary-button{
+    @apply bg-orange-600 text-white pt-2 pb-2 pl-6 pr-6 font-light 
+
+  }
+  .primary-button:hover{
+    @apply bg-gray-800
+  }
 </style>

@@ -1,5 +1,6 @@
 <script context="module">
     import client from '../../sanityClient'
+    import Pagination from '../../components/Pagination'
     import JsonVisualizer from '../../components/Json-visualizer'
 
     import BlogList from '../../components/blog/BlogList'
@@ -11,20 +12,40 @@
 	export async function preload({ params, query }) {
 
         const { slug } = params
+        const {page}= query;
 
-        const nbPosts=await client.fetch('*[_id == "siteSettings"].blogPostsPerPage[0]')
+		let paginationSettings=await client.fetch(`{
+			"per_page":*[_id == "siteSettings"].blogPostsPerPage[0],
+			"total":count(*[_type=="blog_post" && $slug in categories[]->.slug.current]) 
+		}`,{slug})
+
+		const per_page = paginationSettings.per_page || 10;
+		const last_page = Math.ceil(paginationSettings.total / per_page);
+		let current_page = page || 1;
+		current_page=parseInt(current_page)
+		const total=paginationSettings.total;
+		let from = (current_page - 1) * per_page;
+		let to = current_page * per_page;
+
+		paginationSettings={
+			per_page,
+			current_page,
+            total,
+            slug
+		}
 
 		const data=await client.fetch(
 			`{
                 "category":*[_type=="blog_category" && slug.current == $slug]{title}[0],
-                "posts": *[_type=="blog_post" && $slug in categories[]->.slug.current]|order(sticky desc, publishedAt desc)[0...$nbPosts]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
+                "posts": *[_type=="blog_post" && $slug in categories[]->.slug.current]|order(sticky desc, publishedAt desc)[$from...$to]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
 			}`
-		, { slug, nbPosts });
+		, { slug, from,to });
 
 
 
 		return {
-			data
+            data,
+            paginationSettings
 		}
 	}
 
@@ -32,7 +53,8 @@
 
 </script>
 <script>
-	export let data={};
+    export let data={};
+    export let paginationSettings={};
 
 </script>
 
@@ -51,6 +73,12 @@
 </h1>
 
 <BlogList posts={data.posts} class="w-full lg:w-1/2 p-2 mb-10"/>
+	<Pagination
+	current_page={paginationSettings.current_page}
+	per_page={paginationSettings.per_page}
+	total={paginationSettings.total}
+	url="/category/{paginationSettings.slug}"
+	/>	
 
 
 

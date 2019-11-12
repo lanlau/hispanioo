@@ -1,5 +1,7 @@
 <script context="module">
+
 	import client from '../../sanityClient'
+	import Pagination from '../../components/Pagination'
 	import BlogList from '../../components/blog/BlogList'
 
 	import JsonVisualizer from '../../components/Json-visualizer'
@@ -12,40 +14,22 @@
 
 		const {page}= query;
 		let paginationSettings=await client.fetch(`{
-			"nbPostsPerPage":*[_id == "siteSettings"].blogPostsPerPage[0],
-			"nbTotalPosts":count(*[_type=="blog_post"]) 
+			"per_page":*[_id == "siteSettings"].blogPostsPerPage[0],
+			"total":count(*[_type=="blog_post"]) 
 		}`)
 
-		const per_page = paginationSettings.nbPostsPerPage || 10;
-		const last_page = Math.ceil(paginationSettings.nbTotalPosts / per_page);
-		const current_page = page || 1;
+		const per_page = paginationSettings.per_page || 10;
+		const last_page = Math.ceil(paginationSettings.total / per_page);
+		let current_page = page || 1;
+		current_page=parseInt(current_page)
+		const total=paginationSettings.total;
 		let from = (current_page - 1) * per_page;
 		let to = current_page * per_page;
 
-
-
-function range(start, stop)
-{
-    var array = [];
-
-    var length = stop - start; 
-
-    for (var i = 0; i <= length; i++) { 
-        array[i] = start;
-        start++;
-    }
-
-    return array;
-}
-
-
 		paginationSettings={
 			per_page,
-			last_page,
 			current_page,
-			from,
-			to, 
-			range: range(1,last_page)
+			total
 		}
 
 
@@ -75,10 +59,11 @@ function range(start, stop)
 </script>
 
 <script>
-  export let posts=[];
-  export let categories=[];
-  export let tags=[];
-  export let paginationSettings={};
+	
+	export let posts=[];
+	export let categories=[];
+	export let tags=[];
+	export let paginationSettings={};
 
 
 </script>
@@ -96,6 +81,12 @@ function range(start, stop)
 
 	<section class="md:w-4/6 pr-2">
 		<BlogList posts={posts} class="mb-10"/>
+	<Pagination
+	current_page={paginationSettings.current_page}
+	per_page={paginationSettings.per_page}
+	total={paginationSettings.total}
+	url="/blog"
+	/>		
 	</section>
 	<section class="md:w-2/6 pl-2">
 		<h2 class="">CATEGORIES</h2>
@@ -112,6 +103,7 @@ function range(start, stop)
 	</section>	
 </section>
 
-{#each paginationSettings.range as page}
-	<a href="blog?page={page}" class="p-5 m-2 border  {(paginationSettings.current_page == page) ? 'border-orange-600':'border-gray-400'}">{page}</a>
-{/each}
+
+
+
+

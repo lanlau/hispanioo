@@ -31,7 +31,7 @@
 
 <article class="{$$props.class } border-b-8 border-gray-400">
   <div>
-    <a rel=prefetch href="blog/{slug}" class="m-0 p-0">
+    <a rel=prefetch href="{slug}" class="m-0 p-0">
       <img src="{image?image:defaults.defaultImage}?w=1000&format=auto" alt={title} class="w-full  object-cover border-b-4 border-gray-200 shadow" style="height:17rem"/>
     </a>
     
@@ -52,7 +52,7 @@
         Par {author.name} dans
         {#each categories as  category, idx}
             {#if idx>0}, {/if} 
-            <a class="text-orange-600 capitalize text-xs font-light" rel=prefetch href="category/{category.slug}">{category.title}</a>
+            <a class="text-orange-600 capitalize text-xs font-light" rel=prefetch href="/category/{category.slug}">{category.title}</a>
             
         {/each}
     </div>
@@ -60,7 +60,7 @@
     </div>
     {#if author}
     <div class="flex items-center">
-      <a class="bg-orange-600 text-white pt-2 pb-2 pl-6 pr-6 font-light hover:bg-gray-800" href="{slug}">Lire la suite →</a>
+      <a class="primary-button" href="{slug}">Lire la suite →</a>
     </div>
     {/if}
   </div>  
