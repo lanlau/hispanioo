@@ -16,6 +16,11 @@ import blogCategory from './documents/blog/blog_category'
 import blogTag from './documents/blog/blog_tag'
 import blogPost from './documents/blog/blog_post'
 
+import exercice from './documents/exercice/exercice'
+import exerciceCategory from './documents/exercice/exercice_category'
+import exerciceTag from './documents/exercice/exercice_tag'
+
+
 
 import siteSettings from './documents/siteSettings'
 
@@ -25,6 +30,10 @@ import bioPortableText from './objects/bioPortableText'
 import excerptPortableText from './objects/excerptPortableText'
 import mainImage from './objects/mainImage'
 import authorReference from './objects/authorReference'
+
+import choice from './objects/questions/choice'
+import qcs from './objects/questions/qcs'
+import qcm from './objects/questions/qcm'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -41,6 +50,10 @@ export default createSchema({
     blogTag,
     blogPost,
 
+    exercice,
+    exerciceCategory,
+    exerciceTag,
+
 
 
     author,
@@ -51,7 +64,11 @@ export default createSchema({
     authorReference,
     bodyPortableText,
     bioPortableText,
-    excerptPortableText
+    excerptPortableText,
+
+    qcs,
+    qcm,
+    choice
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
