@@ -1,5 +1,5 @@
 <script>
-   import { stores } from '@sapper/app';
+    import { stores } from '@sapper/app';
     export let title=""
     export let description=""
     export let keywords=""
@@ -10,7 +10,7 @@
     export let card="summary_large_image"
 
     const { page } = stores();
-    console.log($page.query)
+
     $: query=($page.query.page)?  Object.keys($page.query).map((key)=>   key + "=" + $page.query[key]).join('&') :null
     $: newUrl="https://" + (url? url : $page.host + $page.path + (query? '&' + query:''));
 </script>

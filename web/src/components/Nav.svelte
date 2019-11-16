@@ -1,5 +1,7 @@
 <script>
+
   export let segment;
+  export let pages;
   
   let menuOpen=false;
 
@@ -37,12 +39,11 @@
         </div>
 
         <div class="hidden sm:flex sm:items-center">
-          <a href="." class="{segment === undefined ? "selected" : ""} menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Home</a>
-
-          <a href="blog" rel=prefetch class='{segment === "blog" ? "selected" : ""} menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4'>Blog</a>
-          <a href="about" class="{segment === "about" ? "selected" : ""} text-gray-800 menu text-sm font-semibold hover:text-orange-600 mr-4">About</a>
-		      
-
+          <a href="." class="menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Home</a>
+		      <a href="blog" rel=prefetch class="menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Blog</a>
+          {#each pages as page}
+            <a href="./page/{page.slug}" rel=prefetch class="menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">{page.title}</a>
+          {/each}
         </div>
 
         <div class="sm:hidden cursor-pointer" on:click={()=>menuOpen=!menuOpen}>
@@ -54,9 +55,12 @@
       
       <div class="block sm:hidden bg-white border-t-2 py-2 {menuOpen? '':'hidden'}">
         <div class="flex flex-col">
-          <a on:click={()=>menuOpen=false} href="." class="{segment === undefined ? "selected" : ""} menu pt-2 pb-2 hover:border-orange-600 hover:border-b  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Home</a>
-          <a on:click={()=>menuOpen=false} href="about" class="{segment === "about" ? "selected" : ""} menu pt-2 pb-2  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">About</a>
-		  <a on:click={()=>menuOpen=false} href="blog" rel=prefetch class='{segment === "blog" ? "selected" : ""} menu pt-2 pb-2  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4'>blog</a>
+          <a on:click={()=>menuOpen=false} href="." class="menu pt-2 pb-2 hover:border-orange-600 hover:border-b  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Home</a>
+    		  <a on:click={()=>menuOpen=false} href="blog" rel=prefetch class='menu pt-2 pb-2  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4'>blog</a>
+
+          {#each pages as page}
+            <a on:click={()=>menuOpen=false} href="./page/{page.slug}" rel=prefetch class="menu pt-2 pb-2  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">{page.title}</a>
+          {/each}
         </div>
       </div>
     </div>

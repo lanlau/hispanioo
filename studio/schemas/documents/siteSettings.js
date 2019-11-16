@@ -54,7 +54,35 @@ export default {
       type: 'image',
       title: 'Blog post ou page image par défaut',
       description: 'Image par défaut utilisée pour les posts et pages si aucune trouvée'
-    },    
+    },   
+    {
+      name: 'topmenu_pages',
+      type: 'array',
+      title: 'Pages du menu principal',
+      description: 'Pages qui apparaitront dans le menu principal',
+      of: [
+        {
+          type: 'reference',
+          to: {
+            type: 'page'
+          }
+        }
+      ]
+    },
+    {
+      name: 'home_pages',
+      type: 'array',
+      title: 'Home pages',
+      description: 'Pages qui apparaitront sur la page d\'accueil',
+      of: [
+        {
+          type: 'reference',
+          to: {
+            type: 'page'
+          }
+        }
+      ]
+    }     
 
   ]
 }

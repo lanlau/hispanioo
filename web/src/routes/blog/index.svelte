@@ -78,8 +78,8 @@
     description="Découvrez l'actualité des pays hispanophones"
 />
 
-<JsonVisualizer code={paginationSettings}/>
-<h1 class="title">Blog </h1>
+
+<h1 class="title"><span class="text-black">Blog</span> </h1>
 <section class="sm:flex">
 
 	<section class="md:w-4/6 pr-2">
