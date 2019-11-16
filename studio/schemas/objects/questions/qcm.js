@@ -12,7 +12,7 @@ export default {
 
       {
         name: 'image',
-        type: 'image    ',
+        type: 'image',
         title: 'image',
         options:{
           collapsible:true,
