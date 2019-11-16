@@ -1,6 +1,6 @@
 <script context="module">
 	import client from '../../sanityClient'
-
+	import SEO from '../../components/SEO'
 	import JsonVisualizer from '../../components/Json-visualizer'
 
   	import blocksToHtml from '@sanity/block-content-to-html'
@@ -27,13 +27,10 @@
 
 </script>
 
-<style>
-
-</style>
-
-<svelte:head>
-	<title>Catégories</title>
-</svelte:head>
+<SEO
+    title="Catégories"
+    description="Tous les billets Hispanioo par catégories"
+/>
 
 <h1 class="title">Catégories</h1>
 <section class="">

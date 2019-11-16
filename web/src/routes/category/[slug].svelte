@@ -2,7 +2,7 @@
     import client from '../../sanityClient'
     import Pagination from '../../components/Pagination'
     import JsonVisualizer from '../../components/Json-visualizer'
-
+	import SEO from '../../components/SEO'
     import BlogList from '../../components/blog/BlogList'
 
 
@@ -58,13 +58,10 @@
 
 </script>
 
-<style>
-
-</style>
-
-<svelte:head>
-	<title>Sapper project template</title>
-</svelte:head>
+<SEO
+    title="Catégories - {data.category.title}"
+    description="Tous les billets Hispanioo reliés à la catégorie {data.category.title}"
+/>
 
 <h1 class="title">
     <a href="blog" class="title hover:text-black">Blog</a> > 
@@ -73,12 +70,12 @@
 </h1>
 
 <BlogList posts={data.posts} class="w-full lg:w-1/2 p-2 mb-10"/>
-	<Pagination
-	current_page={paginationSettings.current_page}
-	per_page={paginationSettings.per_page}
-	total={paginationSettings.total}
-	url="/category/{paginationSettings.slug}"
-	/>	
+<Pagination
+    current_page={paginationSettings.current_page}
+    per_page={paginationSettings.per_page}
+    total={paginationSettings.total}
+    url="/category/{paginationSettings.slug}"
+/>	
 
 
 

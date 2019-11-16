@@ -1,5 +1,6 @@
 <script context="module">
   import blocksToHtml from '@sanity/block-content-to-html'
+  import SEO from '../../components/SEO'
   import client from '../../sanityClient'
   import serializers from '../../components/serializers'
   import JsonVisualizer from '../../components/Json-visualizer'
@@ -66,15 +67,16 @@ import PageList from '../../components/page/PageList'
 
 </script>
 
-<style>
+<SEO
+    title={post.title}
+    description={post.description}
+    image={post.image}
+    thumb={post.image}
+
+/>
 
 
 
-</style>
-
-<svelte:head>
-	<title>{post.title}</title>
-</svelte:head>
 <h1 class="title">
     {#if post.parent}
       <a href="page/{post.parent.slug}" class="title hover:text-black">{post.parent.title}</a> >

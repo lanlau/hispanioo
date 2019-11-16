@@ -1,6 +1,7 @@
 <script context="module">
   import blocksToHtml from '@sanity/block-content-to-html'
   import client from '../../sanityClient'
+  import SEO from '../../components/SEO'
   import serializers from '../../components/serializers'
   import JsonVisualizer from '../../components/Json-visualizer'
 
@@ -77,9 +78,13 @@
 <style>
 </style>
 
-<svelte:head>
-	<title>{post.title}</title>
-</svelte:head>
+<SEO
+    title={post.title}
+    description={post.excerpt}
+    image={post.mainImage}
+    thumb={post.mainImage}
+
+/>
 <Hero image={post.mainImage}/>
 <p class="pt-5 capitalize text-gray-600 text-xs">
   <span>{getDate(post.publishedAt)}</span>

@@ -1,6 +1,7 @@
 <script context="module">
 
 	import client from '../../sanityClient'
+	import SEO from '../../components/SEO'
 	import Pagination from '../../components/Pagination'
 	import BlogList from '../../components/blog/BlogList'
 
@@ -72,9 +73,11 @@
 
 </style>
 
-<svelte:head>
-	<title>BLOG</title>
-</svelte:head>
+<SEO
+    title="Hispanioo Blog"
+    description="Découvrez l'actualité des pays hispanophones"
+/>
+
 <JsonVisualizer code={paginationSettings}/>
 <h1 class="title">Blog </h1>
 <section class="sm:flex">

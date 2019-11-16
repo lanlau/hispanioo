@@ -1,5 +1,6 @@
 <script context="module">
 	import client from '../../sanityClient'
+	import SEO from '../../components/SEO'
 	import Pagination from '../../components/Pagination'
     import JsonVisualizer from '../../components/Json-visualizer'
     import BlogList from '../../components/blog/BlogList'
@@ -56,15 +57,13 @@
     export let paginationSettings={};
 </script>
 
-<style>
+<SEO
+    title="Tags - {data.tag.name}"
+    description="Tous les billets Hispanioo contenant le tag {data.tag.name}"
+/>
 
-</style>
-
-<svelte:head>
-	<title>Sapper project template</title>
-</svelte:head>
-
-<h1 class="title"><a href="blog" class="title hover:text-black">Blog</a> > <a href="tag" class="title hover:text-black">Tags</a> > <span class="text-black">{data.tag.name}</span></h1>
+<h1 class="title"><a href="blog" class="title hover:text-black">Blog</a> > 
+<a href="tag" class="title hover:text-black">Tags</a> > <span class="text-black">{data.tag.name}</span></h1>
 
 <BlogList posts={data.posts} class="w-full lg:w-1/2 p-2 mb-10"/>
 

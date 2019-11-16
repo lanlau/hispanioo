@@ -1,12 +1,12 @@
 <script context="module">
 
-	
+ 
+
 
 	import client from '../sanityClient'
-	
+	import SEO from '../components/SEO'
 	import JsonVisualizer from '../components/Json-visualizer'
 	import Hero from '../components/Hero'
-
 	import BlogList from '../components/blog/BlogList'
 	import PageList from '../components/page/PageList'
 
@@ -30,12 +30,11 @@
 			data
 		}
 	}
-
-
-
 </script>
 <script>
 	import { getContext } from 'svelte';
+
+
 
   $: defaults=getContext('defaults');
 
@@ -46,12 +45,16 @@
 <style>
 
 </style>
-
-<svelte:head>
-	<title>{defaults.title}</title>
-</svelte:head>
-
-
+<SEO
+    title={defaults.title}
+    description={defaults.description}
+    keywords={defaults.keywords.join(',')}
+    type="website"
+    
+    image={defaults.defaultImage}
+    thumb={defaults.defaultImage}
+    card="summary_large_image"
+/>
 
 <Hero image={defaults.homeHeroImage}/>
 
@@ -62,6 +65,7 @@
 	<h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-3xl border-b">A lire sur le blog</h1>
 	<BlogList posts={data.posts} class="w-full lg:w-1/2  p-2 mb-10"/>
 </div>
+<JsonVisualizer code={defaults}/>
 
 
 

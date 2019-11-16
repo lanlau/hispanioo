@@ -1,5 +1,6 @@
 <script context="module">
 	import client from '../../sanityClient'
+	import SEO from '../../components/SEO'
 	import JsonVisualizer from '../../components/Json-visualizer'
 
   	import blocksToHtml from '@sanity/block-content-to-html'
@@ -25,14 +26,11 @@
 
 
 </script>
+<SEO
+    title="Tags"
+    description="Tous les billets Hispanioo par tags"
+/>
 
-<style>
-
-</style>
-
-<svelte:head>
-	<title>TAGS</title>
-</svelte:head>
 
 <h1 class="title">Tags</h1>
 <section class="">
