@@ -115,7 +115,7 @@
 	{@html post.excerpt}
 	{@html post.body2}
 </div>
-{#if post.tags && post.tags.length >0}
+{#if 1==2 && post.tags && post.tags.length >0}
 <div class="mt-10">
     <span class="font-bold text-xs mb-5">Tags:</span>
     <p>
