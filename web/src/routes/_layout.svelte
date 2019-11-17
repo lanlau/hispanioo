@@ -37,7 +37,6 @@
 	
 	export let segment;
 	export let data;
-	export let page
 
 	setContext('defaults', data);
 </script>

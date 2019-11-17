@@ -17,6 +17,11 @@ export default {
           .auto('format')
           .url()
       }),
+    outsideImage: ({ node }) =>
+      h('img', {
+        src: node.src,
+        alt:node.alt
+      }),      
     authorReference: ({ node }) => h('b', {}, node.author.name),
     code: ({ node }) =>
       h('pre', { 'data-language': node.language }, h('code', {}, node.code))

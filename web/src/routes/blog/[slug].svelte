@@ -50,18 +50,30 @@
       h('img',{src:props.url}, props.children)
     )
 
+    const outsideImage=props=>{
+      return h('img',{src:props.node.src, alt:props.node.alt}, props.children)
+    }
+
+    const iframe=props=>{
+      return h('iframe',{src:props.node.src, allowfullscreen:'allowfullscreen',width:'560',height:'315', frameborder:'0'})
+    }
+
+    const formerLink= props=>{
+      return (
+      h('a', {target:"_blank", href:props.node.href, title:props.node.title,alt:props.node.alt}, props.children)
+    )} 
+
     const link= props=>{
       return (
       h('a', {target:"_blank", href:props.mark.href}, props.children)
     )} 
-
 
     return { post: {
       ...post,
   
       
       
-      body2: blocksToHtml({blocks: post.body, serializers: {marks:{pdf, link}}, ...client.clientConfig })
+      body2: blocksToHtml({blocks: post.body, serializers: {types:{outsideImage,iframe,formerLink},marks:{pdf, link}}, ...client.clientConfig })
     } };
   }
 
@@ -103,7 +115,7 @@
 	{@html post.excerpt}
 	{@html post.body2}
 </div>
-{#if post.tags}
+{#if post.tags && post.tags.length >0}
 <div class="mt-10">
     <span class="font-bold text-xs mb-5">Tags:</span>
     <p>

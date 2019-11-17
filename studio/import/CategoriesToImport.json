@@ -1,0 +1,9 @@
+
+{"_id":"1","_type":"blog_category","title":"Billets d'humeur","slug":{"_type":"slug","current":"billets-dhumeur"}}
+{"_id":"2","_type":"blog_category","title":"Espagne","slug":{"_type":"slug","current":"espagne"}}
+{"_id":"3","_type":"blog_category","title":"Amérique","slug":{"_type":"slug","current":"amérique"}}
+{"_id":"4","_type":"blog_category","title":"Réflexions","slug":{"_type":"slug","current":"réflexions"}}
+{"_id":"5","_type":"blog_category","title":"Lectures","slug":{"_type":"slug","current":"lectures"}}
+{"_id":"6","_type":"blog_category","title":"Promo","slug":{"_type":"slug","current":"promo"}}
+{"_id":"7","_type":"blog_category","title":"En direct de Colombie","slug":{"_type":"slug","current":"en-direct-de-colombie"}}
+{"_id":"135","_type":"blog_category","title":"Invités","slug":{"_type":"slug","current":"invités"}}

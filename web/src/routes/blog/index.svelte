@@ -93,16 +93,21 @@
 	</section>
 	<section class="md:w-2/6 pl-2">
 		<h2 class="">CATEGORIES</h2>
+		<div class="flex flex-wrap">
 		{#each categories as category}
 			<a href="category/{category.slug}" 
-			class="helvetica text-gray-600 text-xs pl-8 pr-0 pt-5 pb-5 border-b border-gray-400 block hover:text-orange-600 capitalize">{category.title}</a>
+			rel=prefetch 
+			class="w-full helvetica text-gray-600 text-xs pl-8 pr-0 pt-5 pb-5 border-b border-gray-400 block hover:text-orange-600 capitalize">{category.title}</a>
 		{/each}
-
+		</div>
 		<h2 class="mt-5 mb-5">TAGS</h2>
+		<div class="flex flex-wrap">
 		{#each tags as tag}
 			<a href="tag/{tag.slug}" 
-			class="helvetica text-white text-xs p-1 mr-2  bg-orange-600 hover:bg-gray-800 capitalize">{tag.name}</a>
-		{/each}		
+			rel=prefetch 
+			class="helvetica text-white text-xs p-1 m-1  bg-orange-600 hover:bg-gray-800 capitalize">{tag.name}</a>
+		{/each}	
+		</div>	
 	</section>	
 </section>
 

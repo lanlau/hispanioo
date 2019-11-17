@@ -1,0 +1,134 @@
+
+{"_id":"9","_type":"blog_tag","name":"Migrations","slug":{"_type":"slug","current":"migrations"}}
+{"_id":"10","_type":"blog_tag","name":"Populations","slug":{"_type":"slug","current":"populations"}}
+{"_id":"11","_type":"blog_tag","name":"Remesas","slug":{"_type":"slug","current":"remesas"}}
+{"_id":"12","_type":"blog_tag","name":"Maras","slug":{"_type":"slug","current":"maras"}}
+{"_id":"14","_type":"blog_tag","name":"Farc","slug":{"_type":"slug","current":"farc"}}
+{"_id":"15","_type":"blog_tag","name":"Colombie","slug":{"_type":"slug","current":"colombie"}}
+{"_id":"16","_type":"blog_tag","name":"Pétrole","slug":{"_type":"slug","current":"pétrole"}}
+{"_id":"17","_type":"blog_tag","name":"Equateur","slug":{"_type":"slug","current":"equateur"}}
+{"_id":"18","_type":"blog_tag","name":"Indiens","slug":{"_type":"slug","current":"indiens"}}
+{"_id":"19","_type":"blog_tag","name":"Politique","slug":{"_type":"slug","current":"politique"}}
+{"_id":"20","_type":"blog_tag","name":"Paraguay","slug":{"_type":"slug","current":"paraguay"}}
+{"_id":"21","_type":"blog_tag","name":"Crise","slug":{"_type":"slug","current":"crise"}}
+{"_id":"22","_type":"blog_tag","name":"Matières Premières","slug":{"_type":"slug","current":"matières-premières"}}
+{"_id":"23","_type":"blog_tag","name":"Bolívar","slug":{"_type":"slug","current":"bolívar"}}
+{"_id":"24","_type":"blog_tag","name":"Panama","slug":{"_type":"slug","current":"panama"}}
+{"_id":"25","_type":"blog_tag","name":"Canal","slug":{"_type":"slug","current":"canal"}}
+{"_id":"26","_type":"blog_tag","name":"Famille Royale","slug":{"_type":"slug","current":"famille-royale"}}
+{"_id":"27","_type":"blog_tag","name":"Bolivie","slug":{"_type":"slug","current":"bolivie"}}
+{"_id":"28","_type":"blog_tag","name":"Brésil","slug":{"_type":"slug","current":"brésil"}}
+{"_id":"29","_type":"blog_tag","name":"Phénomène Climatique","slug":{"_type":"slug","current":"phénomène-climatique"}}
+{"_id":"30","_type":"blog_tag","name":"Guatemala","slug":{"_type":"slug","current":"guatemala"}}
+{"_id":"31","_type":"blog_tag","name":"Agrobusiness","slug":{"_type":"slug","current":"agrobusiness"}}
+{"_id":"32","_type":"blog_tag","name":"Argentine","slug":{"_type":"slug","current":"argentine"}}
+{"_id":"33","_type":"blog_tag","name":"Salvador","slug":{"_type":"slug","current":"salvador"}}
+{"_id":"34","_type":"blog_tag","name":"Nationalisations","slug":{"_type":"slug","current":"nationalisations"}}
+{"_id":"35","_type":"blog_tag","name":"Médias","slug":{"_type":"slug","current":"médias"}}
+{"_id":"36","_type":"blog_tag","name":"Venezuela","slug":{"_type":"slug","current":"venezuela"}}
+{"_id":"37","_type":"blog_tag","name":"Dictature","slug":{"_type":"slug","current":"dictature"}}
+{"_id":"38","_type":"blog_tag","name":"Chili","slug":{"_type":"slug","current":"chili"}}
+{"_id":"39","_type":"blog_tag","name":"Eau","slug":{"_type":"slug","current":"eau"}}
+{"_id":"40","_type":"blog_tag","name":"Troc","slug":{"_type":"slug","current":"troc"}}
+{"_id":"41","_type":"blog_tag","name":"Traité De Libre-Échange","slug":{"_type":"slug","current":"traité-de-libre-échange"}}
+{"_id":"42","_type":"blog_tag","name":"Pérou","slug":{"_type":"slug","current":"pérou"}}
+{"_id":"43","_type":"blog_tag","name":"Violences","slug":{"_type":"slug","current":"violences"}}
+{"_id":"44","_type":"blog_tag","name":"Intégration","slug":{"_type":"slug","current":"intégration"}}
+{"_id":"45","_type":"blog_tag","name":"Honduras","slug":{"_type":"slug","current":"honduras"}}
+{"_id":"46","_type":"blog_tag","name":"Uruguay","slug":{"_type":"slug","current":"uruguay"}}
+{"_id":"47","_type":"blog_tag","name":"Armée","slug":{"_type":"slug","current":"armée"}}
+{"_id":"48","_type":"blog_tag","name":"Coup Detat","slug":{"_type":"slug","current":"coup-detat"}}
+{"_id":"49","_type":"blog_tag","name":"Corruption","slug":{"_type":"slug","current":"corruption"}}
+{"_id":"50","_type":"blog_tag","name":"Costa Rica","slug":{"_type":"slug","current":"costa-rica"}}
+{"_id":"51","_type":"blog_tag","name":"Écologie","slug":{"_type":"slug","current":"écologie"}}
+{"_id":"52","_type":"blog_tag","name":"Travail","slug":{"_type":"slug","current":"travail"}}
+{"_id":"53","_type":"blog_tag","name":"Frontières","slug":{"_type":"slug","current":"frontières"}}
+{"_id":"54","_type":"blog_tag","name":"Football","slug":{"_type":"slug","current":"football"}}
+{"_id":"55","_type":"blog_tag","name":"Grippe","slug":{"_type":"slug","current":"grippe"}}
+{"_id":"56","_type":"blog_tag","name":"Mexique","slug":{"_type":"slug","current":"mexique"}}
+{"_id":"57","_type":"blog_tag","name":"Chine","slug":{"_type":"slug","current":"chine"}}
+{"_id":"58","_type":"blog_tag","name":"Etats-Unis","slug":{"_type":"slug","current":"etats-unis"}}
+{"_id":"59","_type":"blog_tag","name":"Terre","slug":{"_type":"slug","current":"terre"}}
+{"_id":"60","_type":"blog_tag","name":"Nicaragua","slug":{"_type":"slug","current":"nicaragua"}}
+{"_id":"61","_type":"blog_tag","name":"Religion","slug":{"_type":"slug","current":"religion"}}
+{"_id":"62","_type":"blog_tag","name":"Narcotrafic","slug":{"_type":"slug","current":"narcotrafic"}}
+{"_id":"63","_type":"blog_tag","name":"Phénomènes Géologiques","slug":{"_type":"slug","current":"phénomènes-géologiques"}}
+{"_id":"64","_type":"blog_tag","name":"République Dominicaine","slug":{"_type":"slug","current":"république-dominicaine"}}
+{"_id":"65","_type":"blog_tag","name":"Étude","slug":{"_type":"slug","current":"étude"}}
+{"_id":"66","_type":"blog_tag","name":"Cuba","slug":{"_type":"slug","current":"cuba"}}
+{"_id":"67","_type":"blog_tag","name":"Démocratie","slug":{"_type":"slug","current":"démocratie"}}
+{"_id":"68","_type":"blog_tag","name":"Espagne","slug":{"_type":"slug","current":"espagne"}}
+{"_id":"69","_type":"blog_tag","name":"Secteur Minier","slug":{"_type":"slug","current":"secteur-minier"}}
+{"_id":"70","_type":"blog_tag","name":"Gaz","slug":{"_type":"slug","current":"gaz"}}
+{"_id":"71","_type":"blog_tag","name":"Stage","slug":{"_type":"slug","current":"stage"}}
+{"_id":"72","_type":"blog_tag","name":"Tourisme","slug":{"_type":"slug","current":"tourisme"}}
+{"_id":"73","_type":"blog_tag","name":"Petits Métiers","slug":{"_type":"slug","current":"petits-métiers"}}
+{"_id":"74","_type":"blog_tag","name":"Manger-Boire","slug":{"_type":"slug","current":"manger-boire"}}
+{"_id":"75","_type":"blog_tag","name":"Porto Rico","slug":{"_type":"slug","current":"porto-rico"}}
+{"_id":"76","_type":"blog_tag","name":"Biodiversité","slug":{"_type":"slug","current":"biodiversité"}}
+{"_id":"77","_type":"blog_tag","name":"Justice","slug":{"_type":"slug","current":"justice"}}
+{"_id":"78","_type":"blog_tag","name":"Maroc","slug":{"_type":"slug","current":"maroc"}}
+{"_id":"79","_type":"blog_tag","name":"Investissements","slug":{"_type":"slug","current":"investissements"}}
+{"_id":"80","_type":"blog_tag","name":"Énergie","slug":{"_type":"slug","current":"énergie"}}
+{"_id":"81","_type":"blog_tag","name":"Élections","slug":{"_type":"slug","current":"élections"}}
+{"_id":"82","_type":"blog_tag","name":"Transport","slug":{"_type":"slug","current":"transport"}}
+{"_id":"83","_type":"blog_tag","name":"Portraits","slug":{"_type":"slug","current":"portraits"}}
+{"_id":"84","_type":"blog_tag","name":"Agrocarburants","slug":{"_type":"slug","current":"agrocarburants"}}
+{"_id":"85","_type":"blog_tag","name":"Amazonie","slug":{"_type":"slug","current":"amazonie"}}
+{"_id":"87","_type":"blog_tag","name":"Autopromo","slug":{"_type":"slug","current":"autopromo"}}
+{"_id":"88","_type":"blog_tag","name":"Mer","slug":{"_type":"slug","current":"mer"}}
+{"_id":"89","_type":"blog_tag","name":"Violence","slug":{"_type":"slug","current":"violence"}}
+{"_id":"90","_type":"blog_tag","name":"Économie","slug":{"_type":"slug","current":"économie"}}
+{"_id":"91","_type":"blog_tag","name":"Coup D'Etat","slug":{"_type":"slug","current":"coup-detat-0"}}
+{"_id":"92","_type":"blog_tag","name":"Technologie","slug":{"_type":"slug","current":"technologie"}}
+{"_id":"93","_type":"blog_tag","name":"Prof","slug":{"_type":"slug","current":"prof"}}
+{"_id":"94","_type":"blog_tag","name":"Souveraineté","slug":{"_type":"slug","current":"souveraineté"}}
+{"_id":"95","_type":"blog_tag","name":"Éducation","slug":{"_type":"slug","current":"éducation"}}
+{"_id":"96","_type":"blog_tag","name":"Ue","slug":{"_type":"slug","current":"ue"}}
+{"_id":"97","_type":"blog_tag","name":"Prisons","slug":{"_type":"slug","current":"prisons"}}
+{"_id":"98","_type":"blog_tag","name":"France","slug":{"_type":"slug","current":"france"}}
+{"_id":"99","_type":"blog_tag","name":"Relations Internationales","slug":{"_type":"slug","current":"relations-internationales"}}
+{"_id":"100","_type":"blog_tag","name":"Diplomatie","slug":{"_type":"slug","current":"diplomatie"}}
+{"_id":"101","_type":"blog_tag","name":"Santé","slug":{"_type":"slug","current":"santé"}}
+{"_id":"102","_type":"blog_tag","name":"Argl","slug":{"_type":"slug","current":"argl"}}
+{"_id":"103","_type":"blog_tag","name":"Environnement","slug":{"_type":"slug","current":"environnement"}}
+{"_id":"104","_type":"blog_tag","name":"Femmes","slug":{"_type":"slug","current":"femmes"}}
+{"_id":"105","_type":"blog_tag","name":"Libertés","slug":{"_type":"slug","current":"libertés"}}
+{"_id":"106","_type":"blog_tag","name":"Famille Roylae","slug":{"_type":"slug","current":"famille-roylae"}}
+{"_id":"107","_type":"blog_tag","name":"Sport","slug":{"_type":"slug","current":"sport"}}
+{"_id":"108","_type":"blog_tag","name":"Jeu Sérieux","slug":{"_type":"slug","current":"jeu-sérieux"}}
+{"_id":"109","_type":"blog_tag","name":"Radio","slug":{"_type":"slug","current":"radio"}}
+{"_id":"110","_type":"blog_tag","name":"Royaume Uni","slug":{"_type":"slug","current":"royaume-uni"}}
+{"_id":"111","_type":"blog_tag","name":"Hydrocarbures","slug":{"_type":"slug","current":"hydrocarbures"}}
+{"_id":"112","_type":"blog_tag","name":"Apprendre","slug":{"_type":"slug","current":"apprendre"}}
+{"_id":"113","_type":"blog_tag","name":"Bogota","slug":{"_type":"slug","current":"bogota"}}
+{"_id":"114","_type":"blog_tag","name":"Palombie","slug":{"_type":"slug","current":"palombie"}}
+{"_id":"115","_type":"blog_tag","name":"Agriculture","slug":{"_type":"slug","current":"agriculture"}}
+{"_id":"116","_type":"blog_tag","name":"Société","slug":{"_type":"slug","current":"société"}}
+{"_id":"117","_type":"blog_tag","name":"Conflit","slug":{"_type":"slug","current":"conflit"}}
+{"_id":"118","_type":"blog_tag","name":"Grande-Bretagne","slug":{"_type":"slug","current":"grande-bretagne"}}
+{"_id":"119","_type":"blog_tag","name":"Euuuhhh","slug":{"_type":"slug","current":"euuuhhh"}}
+{"_id":"120","_type":"blog_tag","name":"Presse","slug":{"_type":"slug","current":"presse"}}
+{"_id":"121","_type":"blog_tag","name":"Dette","slug":{"_type":"slug","current":"dette"}}
+{"_id":"122","_type":"blog_tag","name":"Tice","slug":{"_type":"slug","current":"tice"}}
+{"_id":"123","_type":"blog_tag","name":"Idées","slug":{"_type":"slug","current":"idées"}}
+{"_id":"124","_type":"blog_tag","name":"International","slug":{"_type":"slug","current":"international"}}
+{"_id":"125","_type":"blog_tag","name":"Ddd","slug":{"_type":"slug","current":"ddd"}}
+{"_id":"126","_type":"blog_tag","name":"Réseaux Sociaux","slug":{"_type":"slug","current":"réseaux-sociaux"}}
+{"_id":"127","_type":"blog_tag","name":"Crise Économique","slug":{"_type":"slug","current":"crise-économique"}}
+{"_id":"128","_type":"blog_tag","name":"Vocabulaire","slug":{"_type":"slug","current":"vocabulaire"}}
+{"_id":"129","_type":"blog_tag","name":"Arf","slug":{"_type":"slug","current":"arf"}}
+{"_id":"130","_type":"blog_tag","name":"Population","slug":{"_type":"slug","current":"population"}}
+{"_id":"131","_type":"blog_tag","name":"Droits De L'Homme","slug":{"_type":"slug","current":"droits-de-lhomme"}}
+{"_id":"132","_type":"blog_tag","name":"Cv","slug":{"_type":"slug","current":"cv"}}
+{"_id":"136","_type":"blog_tag","name":"Entreprise","slug":{"_type":"slug","current":"entreprise"}}
+{"_id":"137","_type":"blog_tag","name":"Entreprises","slug":{"_type":"slug","current":"entreprises"}}
+{"_id":"138","_type":"blog_tag","name":"Langue","slug":{"_type":"slug","current":"langue"}}
+{"_id":"139","_type":"blog_tag","name":"Grammaire","slug":{"_type":"slug","current":"grammaire"}}
+{"_id":"140","_type":"blog_tag","name":"Espagnol","slug":{"_type":"slug","current":"espagnol"}}
+{"_id":"141","_type":"blog_tag","name":"Guerre","slug":{"_type":"slug","current":"guerre"}}
+{"_id":"142","_type":"blog_tag","name":"Série","slug":{"_type":"slug","current":"série"}}
+{"_id":"143","_type":"blog_tag","name":"Séries","slug":{"_type":"slug","current":"séries"}}
+{"_id":"144","_type":"blog_tag","name":"Électricité","slug":{"_type":"slug","current":"électricité"}}
+{"_id":"145","_type":"blog_tag","name":"Interconnexion","slug":{"_type":"slug","current":"interconnexion"}}
+{"_id":"146","_type":"blog_tag","name":"Estudios","slug":{"_type":"slug","current":"estudios"}}
