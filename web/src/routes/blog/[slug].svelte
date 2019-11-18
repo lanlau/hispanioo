@@ -58,7 +58,7 @@
       return h('iframe',{src:props.node.src, allowfullscreen:'allowfullscreen',width:'560',height:'315', frameborder:'0'})
     }
 
-    const formerLink= props=>{
+    const formerLink2= props=>{
       return (
       h('a', {target:"_blank", href:props.node.href, title:props.node.title,alt:props.node.alt}, props.children)
     )} 
@@ -73,7 +73,7 @@
   
       
       
-      body2: blocksToHtml({blocks: post.body, serializers: {types:{outsideImage,iframe,formerLink},marks:{pdf, link}}, ...client.clientConfig })
+      body2: blocksToHtml({blocks: post.body, serializers: {types:{outsideImage,iframe},marks:{pdf,link}}, ...client.clientConfig })
     } };
   }
 
@@ -115,7 +115,7 @@
 	{@html post.excerpt}
 	{@html post.body2}
 </div>
-{#if 1==2 && post.tags && post.tags.length >0}
+{#if post.tags && post.tags.length >0}
 <div class="mt-10">
     <span class="font-bold text-xs mb-5">Tags:</span>
     <p>
