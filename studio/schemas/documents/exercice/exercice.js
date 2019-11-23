@@ -79,6 +79,7 @@ export default {
         of: [
             {type: 'qcs'},
             {type: 'qcm'},
+            {type: 'fillInTheBlanks'}
         ]
     }
   ],

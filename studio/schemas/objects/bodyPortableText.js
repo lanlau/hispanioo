@@ -65,6 +65,9 @@ export default {
       type:'file', 
       name:'File', 
       title: 'File'
+    },
+    {
+      type:'outsideImage'
     }
   ]
 }

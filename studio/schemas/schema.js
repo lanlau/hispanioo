@@ -28,13 +28,16 @@ import siteSettings from './documents/siteSettings'
 import bodyPortableText from './objects/bodyPortableText'
 import bioPortableText from './objects/bioPortableText'
 import excerptPortableText from './objects/excerptPortableText'
+import fillIntheBlanksPortableText from './objects/fillInTheBlanksPortableText'
 import mainImage from './objects/mainImage'
 import authorReference from './objects/authorReference'
+
+import outsideImage from './objects/outsideImage'
 
 import choice from './objects/questions/choice'
 import qcs from './objects/questions/qcs'
 import qcm from './objects/questions/qcm'
-
+import fillInTheBlanks from './objects/questions/fillInTheBlanks'
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -60,14 +63,19 @@ export default createSchema({
     page,
 
 
+    outsideImage,
     mainImage,
     authorReference,
     bodyPortableText,
     bioPortableText,
     excerptPortableText,
+    fillIntheBlanksPortableText,
 
     qcs,
     qcm,
+    fillInTheBlanks,
+
+
     choice
 
     // When added to this list, object types can be used as

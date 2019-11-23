@@ -23,7 +23,7 @@
   }
 
   .page-content p{
-    @apply pt-5 pb-10;
+    @apply pt-5 pb-5;
   }
 
   .page-content a{
