@@ -93,7 +93,7 @@ import PageList from '../../components/page/PageList'
 
 <PageList pages={childrenPages}/>
 
-{#if post.slug === "exercices" }
+{#if post.slug.current === "exercices" }
   <a href="/exercice">Accéder aux exercices</a>
 {/if}
 
