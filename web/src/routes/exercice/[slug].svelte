@@ -42,13 +42,6 @@ export async function preload({ params }) {
     background-color: #ffb91d;
   }
 
-  .good {
-    background-color: green;
-  }
-
-  .wrong {
-    background-color: red;
-  }
 </style>
 
 <h1 class="title">
