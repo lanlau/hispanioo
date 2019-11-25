@@ -36,14 +36,17 @@
 
   const check = () => {
     let isCorrect = false;
-    Object.values($exerciceStore.currentQuestion.options).map(option => {
+    Object.values($exerciceStore.currentQuestion.options).some(option => {
+     
       if (option.isCorrect && option._key === selected) {
+
         isCorrect = true;
-        return;
+        return true;
       }
+      
       isCorrect = false;
     });
-    console.log("isCorrect", isCorrect);
+   
 
     exerciceStore.doAction("check", {
       _key: data._key,

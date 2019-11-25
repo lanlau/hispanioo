@@ -7,6 +7,8 @@
   onMount(() => {
     nbQuestions = $exerciceStore.data.questions.length;
     nbCorrectes = 0;
+
+    console.log("resultats", $exerciceStore.results);
     Object.keys($exerciceStore.results).map(questionId => {
       if ($exerciceStore.results[questionId].isCorrect) {
         nbCorrectes++;

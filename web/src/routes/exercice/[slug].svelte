@@ -97,36 +97,36 @@
   <ExerciceInstruction instruction={exercice.instruction} on:start={startExercice}/>
 
 {:else}
-<div>
-{#if !showResults}
-    <div class="pb-5">
-  {#each $exerciceStore.data.questions as question, index }
-    <span
-    class="questionnumber" 
-    class:active={index === $exerciceStore.currentQuestionIdx}
-    
-    on:click={()=>goToQuestion(index)}
-    >{index+1}</span>
-  {/each}
-  </div>
-  {#if $exerciceStore.currentQuestion.title}
-  <h1 class="text-lg">{$exerciceStore.currentQuestion.title}</h1>
-  {/if}
-  {#each [1] as d ($exerciceStore.currentQuestion._key)}
-  <svelte:component 
-    this={getComponent($exerciceStore.currentQuestion._type)}
-    data={$exerciceStore.currentQuestion} 
-    on:updateQuestion={updateQuestion}
-  />
-  {/each}
+  <div>
+  {#if !showResults}
+      <div class="pb-5">
+    {#each $exerciceStore.data.questions as question, index }
+      <span
+      class="questionnumber" 
+      class:active={index === $exerciceStore.currentQuestionIdx}
+      
+      on:click={()=>goToQuestion(index)}
+      >{index+1}</span>
+    {/each}
+    </div>
+    {#if $exerciceStore.currentQuestion.title}
+    <h1 class="text-lg">{$exerciceStore.currentQuestion.title}</h1>
+    {/if}
+    {#each [1] as d ($exerciceStore.currentQuestion._key)}
+    <svelte:component 
+      this={getComponent($exerciceStore.currentQuestion._type)}
+      data={$exerciceStore.currentQuestion} 
+      on:updateQuestion={updateQuestion}
+    />
+    {/each}
 
-  {#if $exerciceStore.results.hasOwnProperty($exerciceStore.currentQuestion._key)}
-  <button class="primary-button  mt-5" on:click={nextQuestion}>Suivant</button>
-  {/if} 
-{:else}
-  <Results/>
-{/if}
-</div>
+    {#if $exerciceStore.results.hasOwnProperty($exerciceStore.currentQuestion._key)}
+    <button class="primary-button  mt-5" on:click={nextQuestion}>Suivant</button>
+    {/if} 
+  {:else}
+    <Results/>
+  {/if}
+  </div>
 {/if}
 
 
