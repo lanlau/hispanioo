@@ -1,7 +1,7 @@
 export default {
-    name: 'exercice_category',
+    name: 'exercice_subcategory',
     type: 'document',
-    title: 'Exercice Category',
+    title: 'Exercice Sub Category',
     fields: [
       {
         name: 'title',
@@ -16,13 +16,7 @@ export default {
           source: 'title',
           maxLength: 200
         }
-      },
-      {
-        name:'subcategories',
-        title:'Sub categories',
-        type:'array',
-        of:[{type:'reference',to:[{type:'exercice_subcategory'}]}]
-    }
+      }
     ]
   }
   

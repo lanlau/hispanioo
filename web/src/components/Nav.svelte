@@ -39,10 +39,10 @@
         </div>
 
         <div class="hidden sm:flex sm:items-center">
-          <a href="." class="menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Home</a>
-		      <a href="blog" rel=prefetch class="menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Blog</a>
+          <a href="." title="Home" class="menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Home</a>
+		      <a href="blog" title="Blog" rel=prefetch class="menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Blog</a>
           {#each pages as page}
-            <a href="./page/{page.slug}" rel=prefetch class="menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">{page.title}</a>
+            <a href="./page/{page.slug}" title="{page.title}" rel=prefetch class="menu text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">{page.title}</a>
           {/each}
         </div>
 
@@ -55,11 +55,11 @@
       
       <div class="block sm:hidden bg-white border-t-2 py-2 {menuOpen? '':'hidden'}">
         <div class="flex flex-col">
-          <a on:click={()=>menuOpen=false} href="." class="menu pt-2 pb-2 hover:border-orange-600 hover:border-b  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Home</a>
-    		  <a on:click={()=>menuOpen=false} href="blog" rel=prefetch class='menu pt-2 pb-2  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4'>blog</a>
+          <a on:click={()=>menuOpen=false} title="Home" href="." class="menu pt-2 pb-2 hover:border-orange-600 hover:border-b  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">Home</a>
+    		  <a on:click={()=>menuOpen=false} href="blog"  title="Blog" rel=prefetch class='menu pt-2 pb-2  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4'>blog</a>
 
           {#each pages as page}
-            <a on:click={()=>menuOpen=false} href="./page/{page.slug}" rel=prefetch class="menu pt-2 pb-2  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">{page.title}</a>
+            <a on:click={()=>menuOpen=false} title="{page.title}"  href="./page/{page.slug}" rel=prefetch class="menu pt-2 pb-2  text-gray-800 text-sm font-semibold hover:text-orange-600 mr-4">{page.title}</a>
           {/each}
         </div>
       </div>

@@ -1,24 +1,69 @@
 <script context="module">
-import data from "./data.js";
-export async function preload({ params }) {
-    return {data}
-}
+  import blocksToHtml from '@sanity/block-content-to-html'
+  import client from '../../sanityClient'
+  import SEO from '../../components/SEO'
+  import serializers from '../../components/serializers'
+  import JsonVisualizer from '../../components/Json-visualizer'
+
+  import data from "./data.js";
+  export async function preload({ params }) {
+
+    const { slug } = params
+
+
+		let defaults=await client.fetch(`*[_id == "siteSettings"]`)
+
+
+    const exercice = await client.fetch(`*[_type=="exercice" && slug.current==$slug][0]{title,instruction,questions,resultMessage025,resultMessage2650,resultMessage5175,resultMessage76100}`, { slug })
+
+    const h = blocksToHtml.h
+    const pdf=props=>(
+      h('a',{target:"_blank",href:props.mark.asset.url}, props.children)
+    )
+
+    const mainImage=props=>(
+      h('img',{src:props.url}, props.children)
+    )
+
+    const iframe=props=>{
+      return h('iframe',{src:props.node.src, allowfullscreen:'allowfullscreen',width:'560',height:'315', frameborder:'0'})
+    }
+
+    const link= props=>{
+      return (
+      h('a', {target:"_blank", href:props.mark.href}, props.children)
+    )} 
+
+    return  {exercice:{
+      ...exercice,
+      instruction: blocksToHtml({blocks: exercice.instruction, serializers: {types:{mainImage,iframe},marks:{pdf,link}}, ...client.clientConfig })
+ 
+    }
+   } ;
+  }
 
 </script>
 <script>
-	import { onMount } from "svelte";
+  import { onMount } from "svelte";
+  
 	import exerciceStore from "./exercice_store.js";
 	import Results from "./results.svelte";
 	import { getComponent } from "../../components/questions/index.js";
-	export let data = {};
-	let showResults = false;
-	exerciceStore.load(data);
+  import ExerciceInstruction from '../../components/exercice/ExerciceInstruction.svelte'
+  export let exercice = {};
+
+  
+  let showResults = false;
+  $:showInstruction=exercice.instruction?true:false
+	$:test=exercice? exerciceStore.load(exercice):null;
 
 	const goToQuestion = idx => {
-	  console.log("going to question", idx);
+
 	  exerciceStore.goToQuestion(idx);
 	};
-
+  const startExercice=()=>{
+    showInstruction=false
+  }
 	const updateQuestion = () => {};
 	const nextQuestion = () => {
 	  if (
@@ -45,9 +90,13 @@ export async function preload({ params }) {
 </style>
 
 <h1 class="title">
-    <a href="exercice" class="title hover:text-black">Exercices</a> > 
+    <a href="/" on:click|preventDefault={()=>window.history.back()} class="title hover:text-black">Exercices</a> > 
     <span class="text-black">{data.title}</span>
 </h1>
+{#if showInstruction}
+  <ExerciceInstruction instruction={exercice.instruction} on:start={startExercice}/>
+
+{:else}
 <div>
 {#if !showResults}
     <div class="pb-5">
@@ -78,5 +127,6 @@ export async function preload({ params }) {
   <Results/>
 {/if}
 </div>
+{/if}
 
 

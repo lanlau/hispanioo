@@ -84,12 +84,12 @@
 
 	<section class="md:w-4/6 pr-2">
 		<BlogList posts={posts} class="mb-10"/>
-	<Pagination
-	current_page={paginationSettings.current_page}
-	per_page={paginationSettings.per_page}
-	total={paginationSettings.total}
-	url="/blog"
-	/>		
+		<Pagination
+		current_page={paginationSettings.current_page}
+		per_page={paginationSettings.per_page}
+		total={paginationSettings.total}
+		url="/blog"
+		/>		
 	</section>
 	<section class="md:w-2/6 pl-2">
 		<h2 class="">CATEGORIES</h2>

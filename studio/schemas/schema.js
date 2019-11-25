@@ -18,6 +18,8 @@ import blogPost from './documents/blog/blog_post'
 
 import exercice from './documents/exercice/exercice'
 import exerciceCategory from './documents/exercice/exercice_category'
+import exerciceSubCategory from './documents/exercice/exercice_subcategory'
+import exerciceListSubCategory from './documents/exercice/exercice_link_subcategory'
 import exerciceTag from './documents/exercice/exercice_tag'
 
 
@@ -55,6 +57,8 @@ export default createSchema({
 
     exercice,
     exerciceCategory,
+    exerciceSubCategory,
+    exerciceListSubCategory,
     exerciceTag,
 
 

@@ -11,6 +11,7 @@ function createExerciceStore() {
   return {
     subscribe,
     load: data => {
+
       return update(state => {
         return {
           ...state,

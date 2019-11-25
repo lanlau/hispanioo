@@ -3,6 +3,9 @@
   export let per_page = 10;
   export let total = 0;
   export let url = "";
+  export let subcategory=""
+
+  const extraparams=subcategory? "&subcategory=" + subcategory: ""
 
   $: totalPages = Math.ceil(total / per_page);
 
@@ -15,7 +18,7 @@
 
     <div >
         {#if previousPage !== current_page & previousPage>0}
-        <a href="{url}/?page={previousPage}" rel=prefetch  class="primary-button">Previous Page</a>
+        <a href="{url}/?page={previousPage}{extraparams}" rel=prefetch  class="primary-button">Previous Page</a>
         {/if}
     </div>
     <div >
@@ -23,7 +26,7 @@
     </div>
     <div >
         {#if nextPage <= totalPages}
-        <a href="{url}/?page={nextPage}" rel=prefetch  class="primary-button">Next Page</a>
+        <a href="{url}/?page={nextPage}{extraparams}" rel=prefetch  class="primary-button">Next Page</a>
         {/if}
     </div>
 </div>

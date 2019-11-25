@@ -19,7 +19,7 @@
 
   .title{
     @apply text-4xl text-orange-600 font-bold mb-10 mt-10;
-    font-family:"Roboto Slab"
+    font-family: "Roboto Slab", Arial, sans-serif;
   }
 
   .page-content p{
@@ -43,4 +43,11 @@
   .primary-button:hover{
     @apply bg-gray-800
   }
+
+  
+.active{
+    @apply  text-orange-600
+    
+}
+
 </style>
