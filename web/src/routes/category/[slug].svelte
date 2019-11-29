@@ -42,7 +42,9 @@
 		, { slug, from,to });
 
 
-
+    if(Object.getOwnPropertyNames(data.category).length === 0){
+      this.error('404', 'Blog post not found')
+    }
 		return {
             data,
             paginationSettings

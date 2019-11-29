@@ -5,7 +5,6 @@
   import serializers from '../../components/serializers'
   import JsonVisualizer from '../../components/Json-visualizer'
 
-  import data from "./data.js";
   export async function preload({ params }) {
 
     const { slug } = params
@@ -33,7 +32,9 @@
       return (
       h('a', {target:"_blank", href:props.mark.href}, props.children)
     )} 
-
+    if(Object.getOwnPropertyNames(exercice).length === 0){
+      this.error('404', 'Blog post not found')
+    }
     return  {exercice:{
       ...exercice,
       instruction: blocksToHtml({blocks: exercice.instruction, serializers: {types:{mainImage,iframe},marks:{pdf,link}}, ...client.clientConfig })
@@ -58,7 +59,6 @@
 	$:test=exercice? exerciceStore.load(exercice):null;
 
 	const goToQuestion = idx => {
-
 	  exerciceStore.goToQuestion(idx);
 	};
   const startExercice=()=>{
@@ -91,15 +91,14 @@
 
 <h1 class="title">
     <a href="/" on:click|preventDefault={()=>window.history.back()} class="title hover:text-black">Exercices</a> > 
-    <span class="text-black">{data.title}</span>
+    <span class="text-black">{exercice.title}</span>
 </h1>
 {#if showInstruction}
   <ExerciceInstruction instruction={exercice.instruction} on:start={startExercice}/>
-
 {:else}
   <div>
   {#if !showResults}
-      <div class="pb-5">
+      <div class="pb-5 flex ">
     {#each $exerciceStore.data.questions as question, index }
       <span
       class="questionnumber" 

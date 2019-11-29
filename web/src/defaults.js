@@ -1,1 +1,0 @@
-export  const image="https://cdn.sanity.io/images/9g18swjx/production/ac9765165db3554f4e4c39e867f4bda51b9b9a6d-1950x1300.jpg";

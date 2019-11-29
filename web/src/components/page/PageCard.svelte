@@ -3,8 +3,6 @@
 	import { getContext } from 'svelte';
   $: defaults=getContext('defaults');
 
-
-import {image as defaultImage} from '../../defaults.js'
     export let title=""
     export let description=""
     export let image=""

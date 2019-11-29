@@ -47,6 +47,9 @@ import PageList from '../../components/page/PageList'
       h('a', {target:"_blank", href:props.mark.href}, props.children)
     )} 
 
+    if(Object.getOwnPropertyNames(post).length === 0){
+      this.error('404', 'Page not found')
+    }
   
     return { post: {
       ...post,

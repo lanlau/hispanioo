@@ -11,6 +11,8 @@
 
 	export async function preload({ params }) {
 
+
+
 		// the `slug` parameter is available because
     // this file is called [slug].html
     const { slug } = params
@@ -68,12 +70,14 @@
       h('a', {target:"_blank", href:props.mark.href}, props.children)
     )} 
 
+    if(!post || Object.getOwnPropertyNames(post).length === 0){
+      this.error('404', 'Blog post not found')
+    }
+
+
     return { post: {
       ...post,
-  
-      
-      
-      body2: blocksToHtml({blocks: post.body, serializers: {types:{outsideImage,iframe},marks:{pdf,link}}, ...client.clientConfig })
+      body2: post.body ?blocksToHtml({blocks: post.body, serializers: {types:{outsideImage,iframe},marks:{pdf,link}}, ...client.clientConfig }):""
     } };
   }
 
@@ -101,30 +105,32 @@
 <p class="pt-5 capitalize text-gray-600 text-xs">
   <span>{getDate(post.publishedAt)}</span>
   <span class="lowercase">dans</span>
-
-  {#each post.categories as  category, idx}
-      {#if idx>0}, {/if} 
-      <a class="text-orange-600 capitalize text-xs font-light" rel=prefetch href="category/{category.slug}">{category.title}</a>
-      
-  {/each}
+  {#if post.categories}
+    {#each post.categories as  category, idx}
+        {#if idx>0}, {/if} 
+        <a class="text-orange-600 capitalize text-xs font-light" rel=prefetch href="category/{category.slug}">{category.title}</a>
+        
+    {/each}
+  {/if}
 </p>
 
 <h1 class="title">{post.title}</h1>
-
-<div class='page-content'>
-	{@html post.excerpt}
-	{@html post.body2}
-</div>
-{#if post.tags && post.tags.length >0}
-<div class="mt-10">
-    <span class="font-bold text-xs mb-5">Tags:</span>
-    <p>
-		{#each post.tags as tag}
-			<a href="tag/{tag.slug}" 
-			class="helvetica text-white text-xs p-1 mr-2  bg-orange-600 hover:bg-gray-800 capitalize">{tag.name}</a>
-		{/each}	
-    </p>
-</div>
+{#if post}
+  <div class='page-content'>
+    {@html post.excerpt}
+    {#if post.body2}{@html post.body2}{/if}
+  </div>
+  {#if post.tags && post.tags.length >0}
+  <div class="mt-10">
+      <span class="font-bold text-xs mb-5">Tags:</span>
+      <p>
+      {#each post.tags as tag}
+        <a href="tag/{tag.slug}" 
+        class="helvetica text-white text-xs p-1 mr-2  bg-orange-600 hover:bg-gray-800 capitalize">{tag.name}</a>
+      {/each}	
+      </p>
+  </div>
+  {/if}
 {/if}
 
 

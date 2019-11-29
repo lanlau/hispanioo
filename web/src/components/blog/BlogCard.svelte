@@ -3,8 +3,6 @@
 
   $: defaults=getContext('defaults');
 
-
-    import {image as defaultImage} from '../../defaults.js'
     export let title=""
     export let date;
     export let description=""

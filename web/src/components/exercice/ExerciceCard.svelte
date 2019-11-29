@@ -1,9 +1,4 @@
 <script>
-	import { getContext } from 'svelte';
-
-  $: defaults=getContext('defaults');
-
-
     export let title=""
     export let date;
     export let description=""
