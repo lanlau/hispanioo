@@ -21,12 +21,10 @@
 		const nbPosts=settings.homePosts;
 		const pages=settings.home_pages;
 
-		
 		const posts=await client.fetch(
 			`*[_type=="blog_post" && !defined(parent)]|order(sticky desc, publishedAt desc)[0...$nbPosts]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
 			`
 		,{nbPosts});
-
 
 		return {
 			posts,
@@ -36,19 +34,11 @@
 </script>
 <script>
 	import { getContext } from 'svelte';
-
-
-
   $: defaults=getContext('defaults');
-
 	export let posts=[];
 	export let pages={};
-
 </script>
 
-<style>
-
-</style>
 <SEO
     title={defaults.title}
     description={defaults.description}
@@ -66,14 +56,6 @@
 
 	<PageList pages={pages} />
 
-	<h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-3xl border-b">Derniers billets</h1>
+	<h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-xl border-b">Derniers billets</h1>
 	<BlogList posts={posts} class="w-full lg:w-1/2  p-2 mb-10"/>
 </div>
-
-
-
-
-
-
-
-

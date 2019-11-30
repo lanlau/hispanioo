@@ -1,8 +1,7 @@
 <script context="module">
-  import blocksToHtml from '@sanity/block-content-to-html'
+  import toHtml from '../../serialize/index.js'
   import client from '../../sanityClient'
   import SEO from '../../components/SEO'
-  import serializers from '../../components/serializers'
   import JsonVisualizer from '../../components/Json-visualizer'
 
   export async function preload({ params }) {
@@ -15,29 +14,13 @@
 
     const exercice = await client.fetch(`*[_type=="exercice" && slug.current==$slug][0]{title,instruction,questions,resultMessage025,resultMessage2650,resultMessage5175,resultMessage76100}`, { slug })
 
-    const h = blocksToHtml.h
-    const pdf=props=>(
-      h('a',{target:"_blank",href:props.mark.asset.url}, props.children)
-    )
 
-    const mainImage=props=>(
-      h('img',{src:props.url}, props.children)
-    )
-
-    const iframe=props=>{
-      return h('iframe',{src:props.node.src, allowfullscreen:'allowfullscreen',width:'560',height:'315', frameborder:'0'})
-    }
-
-    const link= props=>{
-      return (
-      h('a', {target:"_blank", href:props.mark.href}, props.children)
-    )} 
     if(Object.getOwnPropertyNames(exercice).length === 0){
       this.error('404', 'Blog post not found')
     }
     return  {exercice:{
       ...exercice,
-      instruction: blocksToHtml({blocks: exercice.instruction, serializers: {types:{mainImage,iframe},marks:{pdf,link}}, ...client.clientConfig })
+      instruction: toHtml(exercice.instruction)
  
     }
    } ;

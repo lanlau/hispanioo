@@ -8,29 +8,20 @@
 
 
 	export async function preload({ params, query }) {
-
 		const tags=await client.fetch(
 			`*[_type=="blog_tag" ]|order(name asc)[0...9]{name,  "slug":slug.current}`
 		);
-
-		
-
 		return {tags}
-
-
 	}
 </script>
 
 <script>
   export let tags=[]
-
-
 </script>
 <SEO
     title="Tags"
     description="Tous les billets Hispanioo par tags"
 />
-
 
 <h1 class="title">Tags</h1>
 <section class="">

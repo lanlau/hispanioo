@@ -6,8 +6,7 @@
     import BlogList from '../../components/blog/BlogList'
 
 
-    import blocksToHtml from '@sanity/block-content-to-html'
-    import serializers from '../../components/serializers'
+
 
 	export async function preload({ params, query }) {
 

@@ -5,6 +5,6 @@
         const { slug } = params
         console.log("SLUG called",slug)
 
-        this.redirect(302,'/category/' + slug);
+        this.redirect(301,'/category/' + slug);
     }
 </script>

@@ -1,13 +1,17 @@
 <script context="module">
-  import blocksToHtml from '@sanity/block-content-to-html'
   import client from '../../sanityClient'
+  import toHTML from '../../serialize/index.js'
   import SEO from '../../components/SEO'
-  import serializers from '../../components/serializers'
   import JsonVisualizer from '../../components/Json-visualizer'
 
 
   import Hero from '../../components/Hero'
 
+  const getDate=(date)=>{
+      if(!date) return ""
+      const d=new Date(date)
+      return d.toLocaleString('fr-FR',{dateStyle:'long'}) 
+  }  
 
 	export async function preload({ params }) {
 
@@ -42,49 +46,17 @@
     const query = filter + projection
     const post = await client.fetch(query, { slug }).catch(err => this.error(500, err))
 
-
-    const h = blocksToHtml.h
-    const pdf=props=>(
-      h('a',{target:"_blank",href:props.mark.asset.url}, props.children)
-    )
-
-    const mainImage=props=>(
-      h('img',{src:props.url}, props.children)
-    )
-
-    const outsideImage=props=>{
-      return h('img',{src:props.node.src, alt:props.node.alt}, props.children)
-    }
-
-    const iframe=props=>{
-      return h('iframe',{src:props.node.src, allowfullscreen:'allowfullscreen',width:'560',height:'315', frameborder:'0'})
-    }
-
-    const formerLink2= props=>{
-      return (
-      h('a', {target:"_blank", href:props.node.href, title:props.node.title,alt:props.node.alt}, props.children)
-    )} 
-
-    const link= props=>{
-      return (
-      h('a', {target:"_blank", href:props.mark.href}, props.children)
-    )} 
-
     if(!post || Object.getOwnPropertyNames(post).length === 0){
       this.error('404', 'Blog post not found')
     }
 
-
     return { post: {
       ...post,
-      body2: post.body ?blocksToHtml({blocks: post.body, serializers: {types:{outsideImage,iframe},marks:{pdf,link}}, ...client.clientConfig }):""
+      body: toHTML(post.body)
     } };
   }
 
-  const getDate=(date)=>{
-      const d=new Date(date)
-      return d.toLocaleString('fr-FR',{day:'2-digit'}) +' ' + d.toLocaleString('fr-FR',{month:'long'}) +' ' + d.getFullYear()
-  }
+
 </script>
 
 <script>
@@ -101,8 +73,12 @@
     thumb={post.mainImage}
 
 />
+
+
+<h1 class="title">{post.title}</h1>
+
 <Hero image={post.mainImage}/>
-<p class="pt-5 capitalize text-gray-600 text-xs">
+<p class="pt-5 mb-5 capitalize text-gray-600 text-xs">
   <span>{getDate(post.publishedAt)}</span>
   <span class="lowercase">dans</span>
   {#if post.categories}
@@ -114,11 +90,10 @@
   {/if}
 </p>
 
-<h1 class="title">{post.title}</h1>
 {#if post}
   <div class='page-content'>
     {@html post.excerpt}
-    {#if post.body2}{@html post.body2}{/if}
+    {#if post.body}{@html post.body}{/if}
   </div>
   {#if post.tags && post.tags.length >0}
   <div class="mt-10">

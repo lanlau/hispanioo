@@ -1,12 +1,12 @@
 <script context="module">
-  import blocksToHtml from '@sanity/block-content-to-html'
+  import toHtml from '../../serialize/index.js'
   import SEO from '../../components/SEO'
   import client from '../../sanityClient'
-  import serializers from '../../components/serializers'
+
   import JsonVisualizer from '../../components/Json-visualizer'
 
   import Hero from '../../components/Hero'
-import PageList from '../../components/page/PageList'
+  import PageList from '../../components/page/PageList'
 
 
 	export async function preload({ params }) {
@@ -32,31 +32,13 @@ import PageList from '../../components/page/PageList'
 
     const childrenPages = await client.fetch('*[_type=="page" && parent._ref == $id]{title, description, "slug":slug.current, "image":image.asset->.url}', { id:post._id }).catch(err => this.error(500, err))
     
-
-    const h = blocksToHtml.h
-    const pdf=props=>(
-      h('a',{target:"_blank",href:props.mark.asset.url}, props.children)
-    )
-
-    const mainImage=props=>(
-      h('img',{src:props.url}, props.children)
-    )
-
-    const link= props=>{
-      return (
-      h('a', {target:"_blank", href:props.mark.href}, props.children)
-    )} 
-
     if(Object.getOwnPropertyNames(post).length === 0){
       this.error('404', 'Page not found')
     }
   
     return { post: {
       ...post,
-  
-      //image: blocksToHtml({blocks:post.image, serializers, ...client.clientConfig}),
-      
-      content: blocksToHtml({blocks: post.content, serializers: {marks:{pdf, link}}, ...client.clientConfig })
+      content: toHtml(post.content)
     },
     childrenPages };
   }

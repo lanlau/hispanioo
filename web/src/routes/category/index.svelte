@@ -3,35 +3,23 @@
 	import SEO from '../../components/SEO'
 	import JsonVisualizer from '../../components/Json-visualizer'
 
-  	import blocksToHtml from '@sanity/block-content-to-html'
-  	import serializers from '../../components/serializers'
-
-
 	export async function preload({ params, query }) {
        
 		const categories=await client.fetch(
 			`*[_type=="blog_category" ]|order(name asc)[0...9]{title,  "slug":slug.current}`
 		);
-
-		
-
 		return {categories}
-
-
 	}
 </script>
 
 <script>
   export let categories=[]
-
-
 </script>
 
 <SEO
     title="Catégories"
     description="Tous les billets Hispanioo par catégories"
 />
-
 <h1 class="title">Catégories</h1>
 <section class="">
 		{#each categories as category}

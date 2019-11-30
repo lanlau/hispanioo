@@ -30,39 +30,35 @@
 <article class="{$$props.class } border-b-8 border-gray-400">
   <div>
     <a rel=prefetch href="{slug}" class="m-0 p-0">
-      <img src="{image?image:defaults.defaultImage}?w=1000&format=auto" alt={title} class="w-full  object-cover border-b-4 border-gray-200 shadow" style="height:17rem"/>
+      <img src="{image?image:defaults.defaultImage}?w=1000&format=auto" alt={title} class="w-full object-cover border-b-4 border-gray-200 shadow" style="height:17rem"/>
     </a>
-    
-
   </div>
   <div class="sm:flex">
-  <div class="sm:w-1/4 flex">
-    <div class="p-4 border-b-8 border-gray-400 mx-auto text-center h-32">
-        <span class="text-4xl">{getDay(date)}</span>
-        <br/>
-        <span class="text-xs uppercase">{getMonthYear(date)}</span>
+    <div class="sm:w-1/4 flex">
+      <div class="p-4 border-b-8 border-gray-400 mx-auto text-center h-32">
+          <span class="text-4xl">{getDay(date)}</span>
+          <br/>
+          <span class="text-xs uppercase">{getMonthYear(date)}</span>
+      </div>
     </div>
-  </div>
-  <div class="sm:w-3/4  rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal {sticky? 'bg-orange-200':''}">
-    <div class="mb-8">
-      <div class=" text-2xl mb-2 hover:text-orange-600"><a rel=prefetch href="{slug}">{title}</a></div>
-      <div class="text-xs mb-4 text-gray-600 font-light">
-        Par {author.name} dans
-        {#each categories as  category, idx}
-            {#if idx>0}, {/if} 
-            <a class="text-orange-600 capitalize text-xs font-light" rel=prefetch href="/category/{category.slug}">{category.title}</a>
-            
-        {/each}
+    <div class="sm:w-3/4  rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal {sticky? 'bg-orange-200':''}">
+      <div class="mb-8">
+        <div class=" text-2xl mb-2 hover:text-orange-600"><a rel=prefetch href="{slug}">{title}</a></div>
+        <div class="text-xs mb-4 text-gray-600 font-light">
+          Par {author.name} dans
+          {#each categories as  category, idx}
+              {#if idx>0}, {/if} 
+              <a class="text-orange-600 capitalize text-xs font-light" rel=prefetch href="/category/{category.slug}">{category.title}</a> 
+          {/each}
+      </div>
+        <p class="text-grey text-sm ">{@html description}</p>
+      </div>
+      {#if author}
+      <div class="flex items-center">
+        <a class="primary-button" href="{slug}">Lire la suite →</a>
+      </div>
+      {/if}
     </div>
-      <p class="text-grey text-sm ">{@html description}</p>
-    </div>
-    {#if author}
-    <div class="flex items-center">
-      <a class="primary-button" href="{slug}">Lire la suite →</a>
-    </div>
-    {/if}
-  </div>  
-  
   </div>
 
 </article>

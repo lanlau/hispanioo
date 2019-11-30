@@ -2,14 +2,11 @@
 
 	import client from '../../sanityClient'
 	import SEO from '../../components/SEO'
+	import {getPaginationSettings} from '../../utils/pagination'
 	import Pagination from '../../components/Pagination'
 	import BlogList from '../../components/blog/BlogList'
 
 	import JsonVisualizer from '../../components/Json-visualizer'
-
-  	import blocksToHtml from '@sanity/block-content-to-html'
-  	import serializers from '../../components/serializers'
-
 
 	export async function preload({ params, query }) {
 
@@ -19,24 +16,8 @@
 			"total":count(*[_type=="blog_post"]) 
 		}`)
 
-		const per_page = paginationSettings.per_page || 10;
-		const last_page = Math.ceil(paginationSettings.total / per_page);
-		let current_page = page || 1;
-		current_page=parseInt(current_page)
-		const total=paginationSettings.total;
-		let from = (current_page - 1) * per_page;
-		let to = current_page * per_page;
-
-		paginationSettings={
-			per_page,
-			current_page,
-			total
-		}
-
-
-
-
-
+		paginationSettings=getPaginationSettings(page, paginationSettings.per_page,paginationSettings.total)
+		
 
 		const data=await client.fetch(
 			`{
@@ -44,51 +25,36 @@
 				"categories": *[_type=="blog_category" ] | order(title asc){title, "slug": slug.current},
 				"tags": *[_type=="blog_tag" ] | order(name asc){name, "slug": slug.current}
 			}`
-		,{from,to});
+		,{from:paginationSettings.from,to:paginationSettings.to});
 
 		const posts=data.posts;
 		const categories=data.categories;
 		const tags=data.tags;
-
-
-
-
 		return { posts, categories, tags, paginationSettings}
-
-
 	}
 </script>
 
 <script>
-	
 	export let posts=[];
 	export let categories=[];
 	export let tags=[];
 	export let paginationSettings={};
-
-
 </script>
-
-<style>
-
-</style>
 
 <SEO
     title="Hispanioo Blog"
     description="Découvrez l'actualité des pays hispanophones"
 />
 
-
 <h1 class="title"><span class="text-black">Blog</span> </h1>
 <section class="sm:flex">
-
 	<section class="md:w-4/6 pr-2">
 		<BlogList posts={posts} class="mb-10"/>
 		<Pagination
-		current_page={paginationSettings.current_page}
-		per_page={paginationSettings.per_page}
-		total={paginationSettings.total}
-		url="/blog"
+			current_page={paginationSettings.current_page}
+			per_page={paginationSettings.per_page}
+			total={paginationSettings.total}
+			url="/blog"
 		/>		
 	</section>
 	<section class="md:w-2/6 pl-2">
@@ -110,8 +76,3 @@
 		</div>	
 	</section>	
 </section>
-
-
-
-
-
