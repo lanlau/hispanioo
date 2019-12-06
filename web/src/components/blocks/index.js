@@ -1,4 +1,4 @@
-import Blankword from "./Blankword.svelte";
+import Blank from "./Blank.svelte";
 import DefaultComponent from "./DefaultComponent.svelte";
 import Strong from "./Strong.svelte";
 import Em from "./Em.svelte";
@@ -16,7 +16,7 @@ export const getComponent = componentName => {
 };
 
 export const components = {
-  blankword: Blankword,
+  blank: Blank,
   defaultComponent: DefaultComponent,
   normal: DefaultComponent,
   strong: Strong,

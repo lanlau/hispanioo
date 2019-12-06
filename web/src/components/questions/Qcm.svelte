@@ -64,8 +64,7 @@
 <style>
   label {
     display: block;
-    margin: 5px;
-    padding: 5px;
+
   }
   .good {
     background-color: green;
@@ -81,11 +80,12 @@
   <form>
     {#each $exerciceStore.currentQuestion.options as option}
       <label
+        class="p-5 mb-5 border border-gray-300"
         class:good={checkIfGood(option)===true}
         class:wrong={checkIfGood(option)===false}
       >
-        <input type=checkbox bind:group={selected} value={option._key}>
-        {option.text} - {option.isCorrect}
+        <input type=checkbox bind:group={selected} value={option._key} class="mr-5">
+        {option.text}
       </label>      
     {/each}
     {#if !$exerciceStore.results || !$exerciceStore.results.hasOwnProperty($exerciceStore.currentQuestion._key)}

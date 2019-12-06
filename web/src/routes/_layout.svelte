@@ -17,7 +17,18 @@
 				
 				"defaultImage":defaultImage.asset->.url, 
 				"homeHeroImage":homeHeroImage.asset->.url,
-				'topmenu_pages':topmenu_pages[]->{title,'slug':slug.current}}[0]`
+				'topmenu_pages':topmenu_pages[]->{title,'slug':slug.current},
+				
+				'resultMessages':{
+					resultMessage025,
+					resultMessage2550,
+					resultMessage5075,
+					resultMessage75100,
+					resultMessage100
+				}
+	
+				}[0]`
+				
 		);
 
 

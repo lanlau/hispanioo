@@ -56,4 +56,8 @@ body{
     
 }
 
+h2{
+  @apply text-2xl text-orange-600
+}
+
 </style>

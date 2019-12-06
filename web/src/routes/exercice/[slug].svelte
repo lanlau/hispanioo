@@ -12,7 +12,17 @@
 		let defaults=await client.fetch(`*[_id == "siteSettings"]`)
 
 
-    const exercice = await client.fetch(`*[_type=="exercice" && slug.current==$slug][0]{title,instruction,questions,resultMessage025,resultMessage2650,resultMessage5175,resultMessage76100}`, { slug })
+    let exercice = await client.fetch(`*[_type=="exercice" && slug.current==$slug][0]{title,instruction,questions,resultMessage025,resultMessage2650,resultMessage5175,resultMessage76100}`, { slug })
+
+
+    const questions=exercice.questions.map(question=>{
+        return {
+          ...question,
+          instruction:toHtml(question.instruction)
+        }
+    })
+
+    exercice.questions=questions
 
 
     if(Object.getOwnPropertyNames(exercice).length === 0){
@@ -61,7 +71,6 @@
 </script>
 <style>
   .questionnumber {
-    padding: 5px;
     margin: 5px;
     color: #fff;
     background-color: lightgrey;
@@ -84,15 +93,15 @@
       <div class="pb-5 flex ">
     {#each $exerciceStore.data.questions as question, index }
       <span
-      class="questionnumber" 
+      class="questionnumber px-5" 
       class:active={index === $exerciceStore.currentQuestionIdx}
       
       on:click={()=>goToQuestion(index)}
       >{index+1}</span>
     {/each}
     </div>
-    {#if $exerciceStore.currentQuestion.title}
-    <h1 class="text-lg">{$exerciceStore.currentQuestion.title}</h1>
+    {#if $exerciceStore.currentQuestion.instruction}
+    <h1 class="text-xl bg-gray-300 p-10 mb-10">{@html $exerciceStore.currentQuestion.instruction}</h1>
     {/if}
     {#each [1] as d ($exerciceStore.currentQuestion._key)}
     <svelte:component 
