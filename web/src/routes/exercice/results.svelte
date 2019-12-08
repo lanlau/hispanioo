@@ -54,7 +54,7 @@
 
 
 </style>
-<JsonVisualizer code={defaults}/>
+
 
 <div class="w-full p-10 bg-gray-300">
   <h2 class="text-3xl" >{score}%</h2>

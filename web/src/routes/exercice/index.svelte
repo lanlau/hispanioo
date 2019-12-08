@@ -69,7 +69,7 @@ export let paginationSettings={};
 export let data;
 let toggles={}
 </script>
-<JsonVisualizer code={exercices}/>
+
 <SEO
     title="Hispanioo Exercice"
     description="Apprendre l\'espagnol tout seul"
