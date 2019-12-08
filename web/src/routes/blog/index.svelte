@@ -29,7 +29,7 @@
 
 		const posts=data.posts;
 		const categories=data.categories;
-		const tags=data.tags;
+		const tags=data.tags.sort((a, b) => a.name.localeCompare(b.name, 'fr', {ignorePunctuation: true}));
 		return { posts, categories, tags, paginationSettings}
 	}
 </script>

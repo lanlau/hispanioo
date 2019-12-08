@@ -7,57 +7,44 @@
 
   $: defaults=getContext('defaults');
 
-  let score = 0;
-  let nbQuestions = 0;
-  let nbCorrectes = 0;
-  let message="";
-  onMount(() => {
-    nbQuestions = $exerciceStore.data.questions.length;
-    nbCorrectes = 0;
+  
+  $: nbQuestions = $exerciceStore.data.questions.length;
+  $: nbCorrectes = 0;
+  $: message="";
 
-    console.log("resultats", $exerciceStore.results);
-    Object.keys($exerciceStore.results).map(questionId => {
-      if ($exerciceStore.results[questionId].isCorrect) {
-        nbCorrectes++;
-      }
-    });
+  $: Object.keys($exerciceStore.results).map(questionId => {
+    if ($exerciceStore.results[questionId].isCorrect) {
+      nbCorrectes++;
+    }
+  });
 
-    score = nbQuestions ? Math.round((nbCorrectes * 100) / nbQuestions) : 0;
+  $: score = nbQuestions ? Math.round((nbCorrectes * 100) / nbQuestions) : 0;
 
+  $:{
     switch (true){
       case (score<25):{
-        console.log('<25')
         message= toHtml(defaults.resultMessages.resultMessage025);
         break;
       }
-      case (score>=25 && score <50) :{
-        console.log('>=25 & <50')
+      case (score <50) :{
         message= toHtml(defaults.resultMessages.resultMessage2550);
         break;  }
-      case (score>=50 && score <75) :{
-        console.log('>=50 & <75')
+      case (score <75) :{
         message= toHtml(defaults.resultMessages.resultMessage5075);
         break; }
-      case (score>=75 && score <100) :{
-        console.log('>=75 & <100')
+      case (score <100) :{
         message= toHtml(defaults.resultMessages.resultMessage75100);
         break; }
       case (score==100):{
-        console.log('==100')
         message= toHtml(defaults.resultMessages.resultMessage100);
         break;  }
       default:
-        console.log('pas de cas trouve')
         message= 'pas de message'                          
     }
-
-  });
-
-  const getResultMessage=(score)=>{
-    console.log('score',score,toHtml(defaults.resultMessages.resultMessage025))
-
-    //return defaultStatus.message
   }
+
+  
+
 </script>
 <style>
   div {

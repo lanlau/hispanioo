@@ -6,7 +6,7 @@
 	export async function preload({ params, query }) {
        
 		const categories=await client.fetch(
-			`*[_type=="blog_category" ]|order(name asc)[0...9]{title,  "slug":slug.current}`
+			`*[_type=="blog_category" ]|order(name asc){title,  "slug":slug.current}`
 		);
 		return {categories}
 	}

@@ -9,9 +9,9 @@
 
 	export async function preload({ params, query }) {
 		const tags=await client.fetch(
-			`*[_type=="blog_tag" ]|order(name asc)[0...9]{name,  "slug":slug.current}`
+			`*[_type=="blog_tag" ]|order(name asc){name,  "slug":slug.current}`
 		);
-		return {tags}
+		return {tags:tags.sort((a, b) => a.name.localeCompare(b.name, 'fr', {ignorePunctuation: true}))}
 	}
 </script>
 
@@ -24,9 +24,9 @@
 />
 
 <h1 class="title">Tags</h1>
-<section class="">
+<section class="flex flex-row align-baseline justify-start flex-wrap">
     {#each tags as tag}
-        <a href="tag/{tag.slug}" 
-        class="helvetica text-white text-xs p-1 mr-2  bg-orange-600 hover:bg-gray-800 capitalize">{tag.name}</a>
+        <a  href="tag/{tag.slug}" 
+        class="helvetica text-white text-xs p-1 m-2  bg-orange-600 hover:bg-gray-800 capitalize">{tag.name}</a>
     {/each}		
 </section>
