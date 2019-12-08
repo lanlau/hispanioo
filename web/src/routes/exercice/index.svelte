@@ -69,7 +69,7 @@ export let paginationSettings={};
 export let data;
 let toggles={}
 </script>
-
+<JsonVisualizer code={exercices}/>
 <SEO
     title="Hispanioo Exercice"
     description="Apprendre l\'espagnol tout seul"
@@ -84,7 +84,9 @@ let toggles={}
 	<CategoryTree data={categoryTree} current={paginationSettings.subcategory}/>
 </section>
 <section class="md:w-4/6 pr-2 pl-5">
-	<ExerciceList exercices={exercices} class="border-b"/>
+	{#each [1] as d (paginationSettings.subcategory)}
+		<ExerciceList exercices={exercices} class="border-b"/>
+	{/each}
 	<Pagination
 	current_page={paginationSettings.current_page}
 	subcategory={paginationSettings.subcategory}

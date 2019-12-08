@@ -1,8 +1,8 @@
 <script>
-export let data=[];
-export let current="";
+    export let data=[];
+    export let current="";
 
-let toggles={}
+    let toggles={}
 </script>
 
 <ul class="ml-2 mt-2">
