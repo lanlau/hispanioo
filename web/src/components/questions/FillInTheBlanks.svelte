@@ -55,8 +55,8 @@
         if (
           $exerciceStore.answers[questionToCheck] &&
           $exerciceStore.answers[questionToCheck][blankId] &&
-          solution.trim() ===
-            $exerciceStore.answers[questionToCheck][blankId].texte.trim()
+          solution.toLowerCase().trim() ===
+            $exerciceStore.answers[questionToCheck][blankId].texte.toLowerCase().trim()
         ) {
           isCorrect = true;
           nbIsCorrect = nbIsCorrect + 1;
