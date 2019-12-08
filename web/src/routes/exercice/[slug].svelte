@@ -9,7 +9,7 @@
     const { slug } = params
 
 
-		let defaults=await client.fetch(`*[_id == "siteSettings"]`)
+		let defaults=await client.fetch(`*[_id == "siteSettings"][0]`)
 
 
     let exercice = await client.fetch(`*[_type=="exercice" && slug.current==$slug][0]{title,instruction,questions,resultMessage025,resultMessage2650,resultMessage5175,resultMessage76100}`, { slug })
@@ -28,8 +28,12 @@
     if(Object.getOwnPropertyNames(exercice).length === 0){
       this.error('404', 'Blog post not found')
     }
-    return  {exercice:{
+
+    console.log("exercice messages", defaults.resultMessages)
+
+    return  {defaults,exercice:{
       ...exercice,
+      resultMessages:exercice.resultMessages? [...exercice.resultMessages]: [...defaults.resultMessages],
       instruction: toHtml(exercice.instruction)
  
     }
@@ -45,6 +49,7 @@
 	import { getComponent } from "../../components/questions/index.js";
   import ExerciceInstruction from '../../components/exercice/ExerciceInstruction.svelte'
   export let exercice = {};
+  export let defaults={};
 
   
   let showResults = false;
@@ -80,7 +85,7 @@
   }
 
 </style>
-
+<JsonVisualizer code={defaults}/>
 <h1 class="title">
     <a href="/" on:click|preventDefault={()=>window.history.back()} class="title hover:text-black">Exercices</a> > 
     <span class="text-black">{exercice.title}</span>
@@ -115,7 +120,7 @@
     <button class="primary-button  mt-5" on:click={nextQuestion}>Suivant</button>
     {/if} 
   {:else}
-    <Results/>
+    <Results messages={exercice.resultMessages}/>
   {/if}
   </div>
 {/if}

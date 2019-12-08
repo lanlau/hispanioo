@@ -56,8 +56,7 @@
             exercices,
             categoryTree,
             tags,
-			paginationSettings,
-			data
+			paginationSettings
         }       
     };
 </script>
@@ -66,7 +65,6 @@ export let exercices=[];
 export let categoryTree=[];
 export let tags=[];
 export let paginationSettings={};
-export let data;
 let toggles={}
 </script>
 

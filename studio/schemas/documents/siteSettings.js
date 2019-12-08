@@ -105,41 +105,39 @@ export default {
       type:'number',
       fieldset:'exercices',
       description:'Nombre d\'exercices par page'
-    },        
-    {
-      title:'Message Résultat 0-25%',
-      name:'resultMessage025',
-      fieldset:'exercices',
-      description:'Message affiché quand résultats entre >=0 et <25%',
-      type:'bodyPortableText'
     },
     {
-      title:'Message Résultat 25-50%',
-      name:'resultMessage2550',
+      title:'Exercice result messages',
+      name:'resultMessages',
+      description:'Messages qui apparaîtront dans l\'écran de résultats des exercices. Attention l\'ordre est primordial',
       fieldset:'exercices',
-      description:'Message affiché quand résultats entre >=25 et <50%',
-      type:'bodyPortableText'
-    },
-    {
-      title:'Message Résultat 50-75%',
-      name:'resultMessage5075',
-      fieldset:'exercices',
-      description:'Message affiché quand résultats entre >=50 et <75%',
-      type:'bodyPortableText'
-    },
-    {
-      title:'Message Résultat 75-100%',
-      name:'resultMessage75100',
-      fieldset:'exercices',
-      description:'Message affiché quand résultats entre >=75 et <100%',
-      type:'bodyPortableText'
-    } ,
-    {
-      title:'Message Résultat 100%',
-      name:'resultMessage100',
-      fieldset:'exercices',
-      description:'Message affiché quand résultats =100%',
-      type:'bodyPortableText'
+      type:'array',
+      of:[{
+        title:'message',
+        name:'message',
+        type:'object',
+        fields:[
+          {
+            title:'score',
+            name:'score',
+            description:'ce message apparaîtra si le score est inférieur à cette valeur',
+            type:'number'
+          },
+          {
+            title:'isEqual',
+            name:'isEqual',
+            description:'ce message apparaîtra si le score est égal à cette valeur',
+            type:'boolean'
+          },
+          {
+            title:'texte',
+            name:'texte',
+            description:'ce message affichera ce texte',
+            type:'bodyPortableText'
+          }
+        ]
+      }]
+
     }      
   ]
 }
