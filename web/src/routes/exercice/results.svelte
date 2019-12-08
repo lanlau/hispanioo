@@ -46,7 +46,7 @@
 </style>
 
 <div class="w-full p-10 bg-gray-300">
-  <h2 class="text-3xl" >{score}% XXXXX</h2>
+  <h2 class="text-3xl" >{score}%</h2>
   <p class="text-sm">{nbCorrectes} / {nbQuestions} correcte(s)</p>
   <div class="mt-10">{ @html message}</div>
 </div>
