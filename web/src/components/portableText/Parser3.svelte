@@ -2,7 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import { getComponent } from "../blocks/index.js";
   export let content;
-  export let showComponent = true;
+  //export let showComponent = true;
   const dispatch = createEventDispatcher();
 </script>
 

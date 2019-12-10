@@ -120,7 +120,9 @@
     <button class="primary-button  mt-5" on:click={nextQuestion}>Suivant</button>
     {/if} 
   {:else}
-    <Results messages={exercice.resultMessages}/>
+    {#each [1] as d ($exerciceStore.currentQuestion._key)}
+      <Results messages={exercice.resultMessages}/>
+    {/each}
   {/if}
   </div>
 {/if}

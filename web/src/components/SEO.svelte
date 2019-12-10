@@ -5,7 +5,7 @@
     export let keywords=""
     export let type="website"
     export let url=""
-    export let image=""
+    //export let image=""
     export let thumb=""
     export let card="summary_large_image"
 

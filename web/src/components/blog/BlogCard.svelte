@@ -8,7 +8,6 @@
     export let description=""
     export let image=""
     export let slug=""
-    export let keywords=null
     export let categories=null
     export let author=null
     export let sticky=false

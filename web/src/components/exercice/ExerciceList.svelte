@@ -1,10 +1,12 @@
 <script>
     import ExerciceCard from './ExerciceCard'
     export let exercices=[]
+    export let subcategory="";
+    export let tag="";
 
 </script>
 <div class="">
-    {#each exercices as exercice (exercice._id)}
+    {#each exercices as exercice (exercice._id, subcategory,tag)}
 
         <ExerciceCard 
             class="{$$props.class}"

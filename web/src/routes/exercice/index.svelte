@@ -10,7 +10,7 @@
 
 
 	export async function preload({ params, query }) {
-		const {page, subcategory}= query;
+		const {page, subcategory,tag}= query;
 
 		let paginationSettings= subcategory?  
 			await client.fetch(`{
@@ -28,6 +28,7 @@
 		paginationSettings=getPaginationSettings(page, paginationSettings.per_page,paginationSettings.total)
 
 		paginationSettings={
+			tag,
 			subcategory,
 			...paginationSettings
 		}
@@ -66,6 +67,7 @@ export let categoryTree=[];
 export let tags=[];
 export let paginationSettings={};
 let toggles={}
+console.log(tags)
 </script>
 
 <SEO
@@ -78,12 +80,23 @@ let toggles={}
 <section class="sm:flex">
 <section class="md:w-2/6 pr-2 border-r">
 	<a href="/exercice" class="block mb-5" class:active={!paginationSettings.subcategory}>Tous</a> 
-	<h2 class="border-b order-orange-600 font-bold">Catégories:</h2>
+	<h2 class="border-b order-orange-600 font-bold mb-5">Catégories:</h2>
 	<CategoryTree data={categoryTree} current={paginationSettings.subcategory}/>
+	<!--
+	<h2 class="border-b order-orange-600 font-bold mb-5 mt-5">Tags</h2>
+	<div class="flex flex-wrap">
+	{#each tags as tag}
+		<a href="/exercice?tag={tag.slug}" 
+		rel=prefetch 
+		class="helvetica text-white text-xs p-1 m-1  bg-orange-600 hover:bg-gray-800 capitalize">{tag.name}</a>
+	{/each}	
+	</div>
+
+	-->	
 </section>
 <section class="md:w-4/6 pr-2 pl-5">
 	{#each [1] as d (paginationSettings.subcategory)}
-		<ExerciceList exercices={exercices} class="border-b"/>
+		<ExerciceList exercices={exercices} subcategory={paginationSettings.subcategory} tag={paginationSettings.tag} class="border-b"/>
 	{/each}
 	<Pagination
 	current_page={paginationSettings.current_page}

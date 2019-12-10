@@ -1,6 +1,6 @@
 <script>
 
-  export let segment;
+  //export let segment;
   export let pages;
   
   let menuOpen=false;
@@ -10,24 +10,7 @@
 
 </script>
 
-<style>
-	.selected {
-		position: relative;
-		display: inline-block;
-	}
 
-	.selected::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		height: 2px;
-		
-		display: block;
-		bottom: -1px;
-	}
-
-
-</style>
 
 
 <nav class="bg-gray-100 font-sans w-full m-0 z-10 fixed ">
