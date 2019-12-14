@@ -1,85 +1,91 @@
 <script context="module">
-  import toHtml from '../../serialize/index.js'
-  import SEO from '../../components/SEO'
-  import client from '../../sanityClient'
+  import toHtml from "../../serialize/index.js";
+  import SEO from "../../components/SEO";
+  import client from "../../sanityClient";
 
-  import JsonVisualizer from '../../components/Json-visualizer'
+  import JsonVisualizer from "../../components/Json-visualizer";
 
-  import Hero from '../../components/Hero'
-  import PageList from '../../components/page/PageList'
+  import Hero from "../../components/Hero";
+  import PageList from "../../components/page/PageList";
 
-
-	export async function preload({ params }) {
-
-		// the `slug` parameter is available because
+  export async function preload({ params }) {
+    // the `slug` parameter is available because
     // this file is called [slug].html
-    const { slug } = params
-    const filter = '*[_type == "page" && slug.current == $slug][0]'
+    const { slug } = params;
+    const filter = '*[_type == "page" && slug.current == $slug][0]';
 
     const projection = `{
       ...,
       "image":image.asset->.url,
       parent->{title,"slug":slug.current},
+      
       content[]{
         ...,
+        _type=="File"=>{_type,asset->{url,originalFilename}},
         markDefs[]{...,_type=="pdf"=>{_type,asset->{url}}},
       }
-    }`
+    }`;
 
-    const query = filter + projection
-    const post = await client.fetch(query, { slug }).catch(err => this.error(500, err))
+    const query = filter + projection;
+    const post = await client
+      .fetch(query, { slug })
+      .catch(err => this.error(500, err));
 
+    const childrenPages = await client
+      .fetch(
+        '*[_type=="page" && parent._ref == $id]{title, description, "slug":slug.current, "image":image.asset->.url}',
+        { id: post._id }
+      )
+      .catch(err => this.error(500, err));
 
-    const childrenPages = await client.fetch('*[_type=="page" && parent._ref == $id]{title, description, "slug":slug.current, "image":image.asset->.url}', { id:post._id }).catch(err => this.error(500, err))
-    
-    if(Object.getOwnPropertyNames(post).length === 0){
-      this.error('404', 'Page not found')
+    if (Object.getOwnPropertyNames(post).length === 0) {
+      this.error("404", "Page not found");
     }
-  
-    return { post: {
-      ...post,
-      content: toHtml(post.content)
-    },
-    childrenPages };
+
+    return {
+      post: {
+        ...post,
+        content: toHtml(post.content)
+      },
+      childrenPages
+    };
   }
-
-
 </script>
 
 <script>
   export let post;
   export let childrenPages;
-
 </script>
 
 <SEO
-    title={post.title}
-    description={post.description}
-    image={post.image}
-    thumb={post.image}
-
-/>
-
-
+  title={post.title}
+  description={post.description}
+  image={post.image}
+  thumb={post.image} />
 
 <h1 class="title">
-    {#if post.parent}
-      <a href="page/{post.parent.slug}" class="title hover:text-black">{post.parent.title}</a> >
-    {/if}
-     
-    <span class="text-black">{post.title}</span>
+  {#if post.parent}
+    <a href="page/{post.parent.slug}" class="title hover:text-black">
+      {post.parent.title}
+    </a>
+    >
+  {/if}
+
+  <span class="text-black">{post.title}</span>
 </h1>
 
-<Hero image={post.image} class="mb-10"/>
-<div class='page-content'>
-	{#if post.description}<div>{ post.description}</div>{/if}
-	<div>{@html post.content}</div>
+<Hero image={post.image} class="mb-10" />
+<div class="page-content">
+  {#if post.description}
+    <div>{post.description}</div>
+  {/if}
+  <div>
+    {@html post.content}
+  </div>
 </div>
 
-<PageList pages={childrenPages}/>
+<PageList pages={childrenPages} />
 
-{#if post.slug.current === "exercices" }
+{#if post.slug.current === 'exercices'}
   <a href="/exercice" class="primary-button mt-10">Accéder aux exercices</a>
 {/if}
-
-
