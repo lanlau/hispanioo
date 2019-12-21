@@ -32,8 +32,12 @@
     /*font-family: "Roboto Slab", Arial, sans-serif;*/
   }
 
+  .page-content h4 {
+    @apply text-xl font-bold pt-2 pb-2;
+  }
+
   .page-content p {
-    @apply pt-5 pb-5;
+    @apply pt-2 pb-2;
   }
 
   .page-content a {
