@@ -12,13 +12,17 @@
     // the `slug` parameter is available because
     // this file is called [slug].html
     const { slug } = params;
+
+    console.log("slug", slug);
     const filter = '*[_type == "page" && slug.current == $slug][0]';
+    //*[_type == "page" && subpages[]._ref == '96d29d03-305c-47bb-821b-78c61a4e0e6a']{'slug':slug.current}
 
     const projection = `{
       ...,
       "image":image.asset->.url,
-      parent->{title,"slug":slug.current},
-      
+  	subpages[]->{title,"slug":slug.current,description,"image":image.asset->.url},
+
+"parent":*[_type == "page" && references(^._id)][0]{title,"slug":slug.current},
       content[]{
         ...,
         _type=="File"=>{_type,asset->{url,originalFilename}},
@@ -31,30 +35,23 @@
       .fetch(query, { slug })
       .catch(err => this.error(500, err));
 
-    const childrenPages = await client
-      .fetch(
-        '*[_type=="page" && parent._ref == $id]{title, description, "slug":slug.current, "image":image.asset->.url}',
-        { id: post._id }
-      )
-      .catch(err => this.error(500, err));
-
     if (Object.getOwnPropertyNames(post).length === 0) {
-      this.error("404", "Page not found");
+      this.error("404", "Sorry, Page not found");
     }
+
+    console.log(post.parent2);
 
     return {
       post: {
         ...post,
         content: toHtml(post.content)
-      },
-      childrenPages
+      }
     };
   }
 </script>
 
 <script>
   export let post;
-  export let childrenPages;
 </script>
 
 <SEO
@@ -84,7 +81,7 @@
   </div>
 </div>
 
-<PageList pages={childrenPages} />
+<PageList pages={post.subpages} />
 
 {#if post.slug.current === 'exercices'}
   <a href="/exercice" class="primary-button mt-10">Accéder aux exercices</a>

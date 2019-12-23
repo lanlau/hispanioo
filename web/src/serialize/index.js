@@ -39,15 +39,18 @@ const outsideImage = props => {
 const File = props => {
   //https://cdn.sanity.io/files/9g18swjx/production/7624e12515299e5898af728f14d9c8384aed6b39.pdf?dl
   const url = props.node.asset ? props.node.asset.url : null;
+
   const originalFilename = props.node.asset
     ? props.node.asset.originalFilename
     : null;
+
+  const title = props.node.title ? props.node.title : originalFilename;
 
   const href = props.url ? props.url : url;
   return h(
     "a",
     { class: "file", target: "_blank", href: href },
-    "Télécharger: " + originalFilename
+    "Télécharger: " + title
   );
 };
 
