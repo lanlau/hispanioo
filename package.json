@@ -15,6 +15,6 @@
   },
   "devDependencies": {
     "@sanity/cli": "^0.145.0",
-    "lerna": "^3.14.0"
+    "lerna": "^3.19.0"
   }
 }

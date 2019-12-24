@@ -1,14 +1,26 @@
 import S from '@sanity/desk-tool/structure-builder'
-import MdSettings from 'react-icons/lib/md/settings'
-import MdPerson from 'react-icons/lib/md/person'
-import MdLibraryBooks from 'react-icons/lib/md/library-books'
-import MdFilterList from 'react-icons/lib/md/filter-list'
-import FaHashtag from 'react-icons/lib/fa/hashtag'
-
+import { MdSettings } from 'react-icons/md'
+import { MdPerson } from 'react-icons/md'
+import { MdLibraryBooks } from 'react-icons/md'
+import { MdFilterList } from 'react-icons/md'
+import { FaHashtag } from 'react-icons/fa'
+import { FaLink } from 'react-icons/fa'
+import { MdSchool } from 'react-icons/md'
+import React from 'react'
 const hiddenDocTypes = listItem =>
-  !['blog_tag', 'blog_category', 'blog_post', 'siteSettings', 'page', 'author'].includes(
-    listItem.getId()
-  )
+  ![
+    'blog_tag',
+    'blog_category',
+    'blog_post',
+    'siteSettings',
+    'page',
+    'author',
+    'exercice',
+    'exercice_subcategory',
+    'exercice_category',
+    'exercice_link_subcategory',
+    'exercice_tag'
+  ].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -128,30 +140,6 @@ export default () =>
           S.list()
             .title('Pages')
             .items([
-              ////
-              S.listItem()
-                .title('By pages')
-                .showIcon(false),
-              S.divider(),
-              S.listItem()
-                .title('Top level Pages')
-                .icon(MdFilterList)
-                .child(
-                  S.documentList()
-                    .title('List of pages')
-                    .schemaType('page')
-                    .menuItems(S.documentTypeList('page').getMenuItems())
-                    .filter('_type == "page" && !defined(parent)')
-                    .child(pageId =>
-                      S.documentList()
-                        .title('Pages under')
-                        .schemaType('page')
-                        .menuItems(S.documentTypeList('page').getMenuItems())
-
-                        .filter('_type == $type && $pageId == parent._ref')
-                        .params({ type: 'page', pageId })
-                    )
-                ),
               S.listItem()
                 .title('All Pages')
                 .icon(MdFilterList)
@@ -161,6 +149,68 @@ export default () =>
                     .schemaType('page')
                     .menuItems(S.documentTypeList('page').getMenuItems())
                     .filter('_type == "page"')
+                ),
+              S.divider(),
+              ////
+              S.listItem()
+                .title('View pages hierarchy (view only)')
+                .icon(MdFilterList)
+                .child(
+                  S.documentTypeList('page')
+                    .title('sublevel')
+                    .filter(
+                      ' _type == "page" && count(*[ _type == "siteSettings" && ^._id in topmenu_pages[]._ref ]) > 0 '
+                    )
+
+                    .child(id =>
+                      S.documentTypeList('page')
+                        .title('subpages')
+                        .filter(
+                          '_type == $type && count(*[ _type == "page" && _id == $id && ^._id in subpages[]._ref ]) > 0  '
+                        )
+                        .params({ type: 'page', id })
+
+                        .child(id =>
+                          S.documentTypeList('page')
+                            .schemaType('page')
+                            .menuItems([])
+                            .title('subpages')
+                            .filter(
+                              '_type == $type && count(*[ _type == "page" && _id == $id && ^._id in subpages[]._ref ]) > 0  '
+                            )
+                            .params({ type: 'page', id })
+                            .child(id =>
+                              S.documentList('page')
+                                .schemaType('page')
+                                .menuItems([])
+                                .title('subpages')
+                                .filter(
+                                  '_type == $type && count(*[ _type == "page" && _id == $id && ^._id in subpages[]._ref ]) > 0  '
+                                )
+                                .params({ type: 'page', id })
+                                .child(id =>
+                                  S.documentList('page')
+                                    .schemaType('page')
+                                    .menuItems()
+                                    .title('subpages')
+                                    .filter(
+                                      '_type == $type && count(*[ _type == "page" && _id == $id && ^._id in subpages[]._ref ]) > 0  '
+                                    )
+                                    .params({ type: 'page', id })
+                                )
+                            )
+                        )
+                    )
+                ),
+              S.listItem()
+                .title('Orphan Pages')
+                .icon(MdFilterList)
+                .child(
+                  S.documentList()
+                    .title('List of pages')
+                    .schemaType('page')
+                    .menuItems(S.documentTypeList('page').getMenuItems())
+                    .filter('_type == "page" && count(*[references(^._id)])==0')
                 )
             ])
         ),
@@ -169,7 +219,48 @@ export default () =>
       //.child(S.documentTypeList('page').title('Pages')),
 
       ///////// FIN PAGES
+      /////debut exercices
 
+      S.listItem()
+        .title('Exercices')
+        .icon(MdSchool)
+        .child(
+          S.list()
+            .title('Options')
+            .items([
+              S.listItem()
+                .title('Catégories')
+                .child(S.documentTypeList('exercice_category')),
+              S.listItem()
+                .title('Sous Catégories')
+                .child(S.documentTypeList('exercice_subcategory')),
+              ,
+              S.divider(),
+              S.listItem()
+                .title('Tags')
+                .icon(FaHashtag)
+                .child(S.documentTypeList('exercice_tag')),
+              ,
+              S.listItem()
+                .title('Exercices sans tags')
+                .icon(MdFilterList)
+                .child(
+                  S.documentTypeList('exercice').filter('_type=="exercice" && !defined(tags)')
+                ),
+              S.divider(),
+              S.listItem()
+                .title('Lien entre sous catégories et exercices')
+                .icon(FaLink)
+                .child(S.documentTypeList('exercice_link_subcategory')),
+              ,
+              S.listItem()
+                .title('Exercices')
+                .icon(MdSchool)
+                .child(S.documentTypeList('exercice'))
+            ])
+        ),
+
+      ////fin exercices
       S.listItem()
         .title('Authors')
         .icon(MdPerson)

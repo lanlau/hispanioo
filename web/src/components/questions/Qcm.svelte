@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import exerciceStore from "../../routes/exercice/exercice_store.js";
 
   import PortableText from "../portableText/PortableText.svelte";
@@ -9,6 +10,10 @@
   export let data = {};
 
   let selected = [];
+
+  onMount(async () => {
+    selected = [];
+  });
 
   $: checkIfGood = option => {
     let correctionMode = false;
@@ -61,36 +66,46 @@
     });
   };
 </script>
+
 <style>
   label {
     display: block;
-
   }
   .good {
     background-color: green;
-    color:#fff;
+    color: #fff;
   }
 
   .wrong {
     background-color: red;
-    color:#fff;
+    color: #fff;
   }
 </style>
+
 <main id="main">
   <form>
-    {#each $exerciceStore.currentQuestion.options as option}
+    {#each $exerciceStore.currentQuestion.options as option (option._key)}
       <label
         class="p-5 mb-5 border border-gray-300"
-        class:good={checkIfGood(option)===true}
-        class:wrong={checkIfGood(option)===false}
-      >
-        <input type=checkbox bind:group={selected} value={option._key} class="mr-5">
+        class:good={checkIfGood(option) === true}
+        class:wrong={checkIfGood(option) === false}>
+        <input
+          type="checkbox"
+          bind:group={selected}
+          value={option._key}
+          class="mr-5" />
         {option.text}
-      </label>      
+      </label>
     {/each}
     {#if !$exerciceStore.results || !$exerciceStore.results.hasOwnProperty($exerciceStore.currentQuestion._key)}
-      <button class="primary-button  mt-5" on:click|preventDefault type="submit" on:click={check}>Vérifier</button>
-    {/if}  
+      <button
+        class="primary-button mt-5"
+        on:click|preventDefault
+        type="submit"
+        on:click={check}>
+        Vérifier
+      </button>
+    {/if}
 
   </form>
 </main>

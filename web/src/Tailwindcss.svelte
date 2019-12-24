@@ -59,6 +59,10 @@
     @apply text-orange-600;
   }
 
+  .tagactive {
+    @apply bg-gray-600 text-white;
+  }
+
   h2 {
     @apply text-2xl text-orange-600;
   }

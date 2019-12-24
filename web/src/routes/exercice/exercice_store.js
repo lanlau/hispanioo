@@ -11,10 +11,11 @@ function createExerciceStore() {
   return {
     subscribe,
     load: data => {
-
       return update(state => {
         return {
-          ...state,
+          results: {},
+          blanks: {},
+          answers: {},
           data: data,
           currentQuestion: data.questions[0],
           currentQuestionIdx: 0

@@ -5,7 +5,7 @@
 </script>
 
 {#if pages}
-  <section class="{$$props.class} block flex flex-wrap">
+  <section class="{$$props.class} block flex flex-wrap mt-5">
     {#each pages as page}
       <PageCard
         class="w-full lg:w-1/3 p-1 mb-4 mb-5"

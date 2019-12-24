@@ -73,9 +73,6 @@
 
 <Hero image={post.image} class="mb-10" />
 <div class="page-content">
-  {#if post.description}
-    <div>{post.description}</div>
-  {/if}
   <div>
     {@html post.content}
   </div>
@@ -84,5 +81,7 @@
 <PageList pages={post.subpages} />
 
 {#if post.slug.current === 'exercices'}
-  <a href="/exercice" class="primary-button mt-10">Accéder aux exercices</a>
+  <a href="/exercice" class="inline-block primary-button mt-10">
+    Accéder aux exercices
+  </a>
 {/if}
