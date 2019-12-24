@@ -276,6 +276,28 @@ export default () =>
             .schemaType('siteSettings')
             .documentId('siteSettings')
         ),
+
+      ///debut files
+
+      S.listItem()
+        .title('Files')
+        .child(
+          S.documentTypeList('sanity.fileAsset')
+            .title('Assets')
+            .menuItems([
+              ...S.documentTypeList('sanity.fileAsset').getMenuItems(),
+              S.orderingMenuItem({
+                title: 'Filename asc',
+                by: [{ field: 'originalFilename', direction: 'asc' }]
+              }),
+              S.orderingMenuItem({
+                title: 'Filename desc',
+                by: [{ field: 'originalFilename', direction: 'desc' }]
+              })
+            ])
+        ),
+      ////fin files
+
       ///// contenu deja existant
       /*
       S.listItem()

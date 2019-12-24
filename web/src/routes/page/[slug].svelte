@@ -13,7 +13,6 @@
     // this file is called [slug].html
     const { slug } = params;
 
-    console.log("slug", slug);
     const filter = '*[_type == "page" && slug.current == $slug][0]';
     //*[_type == "page" && subpages[]._ref == '96d29d03-305c-47bb-821b-78c61a4e0e6a']{'slug':slug.current}
 
@@ -38,8 +37,6 @@
     if (Object.getOwnPropertyNames(post).length === 0) {
       this.error("404", "Sorry, Page not found");
     }
-
-    console.log(post.parent2);
 
     return {
       post: {
