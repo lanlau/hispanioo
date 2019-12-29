@@ -51,6 +51,20 @@
   export let post;
 </script>
 
+<style>
+  .file {
+    padding: 20px;
+    background-color: #e4e4e4;
+    display: block;
+    margin: 10px 0 10px 0;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<p class="file hidden" />
 <SEO
   title={post.title}
   description={post.description}

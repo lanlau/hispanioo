@@ -1,5 +1,6 @@
 import imageUrlBuilder from "@sanity/image-url";
 import blocksToHtml from "@sanity/block-content-to-html";
+
 import client from "../sanityClient";
 
 const builder = imageUrlBuilder(client);
@@ -50,7 +51,7 @@ const File = props => {
   return h(
     "a",
     { class: "file", target: "_blank", href: href },
-    "Télécharger: " + title
+    "Afficher: " + title
   );
 };
 
