@@ -3,3 +3,4 @@
 /Categories/:slug /category/:slug 301
 /Tags/:slug /tag/:slug 301
 /article/:slug /page/:slug 301
+/sites/* https://oldimages.hispanioo.com/:splat 200 
