@@ -64,7 +64,12 @@ const iframe = props => {
     frameborder: "0"
   });
 };
-
+const u = props => {
+  return h("u", {}, props.children);
+};
+const strike = props => {
+  return h("strike", {}, props.children);
+};
 const formerLink2 = props => {
   return h(
     "a",
@@ -89,7 +94,7 @@ const toHtml = contentToTransform => {
     blocks: contentToTransform,
     serializers: {
       types: { outsideImage, iframe, mainImage, File },
-      marks: { pdf, link }
+      marks: { pdf, link, u, strike }
     },
     ...client.clientConfig
   });

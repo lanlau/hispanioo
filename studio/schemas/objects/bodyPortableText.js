@@ -1,3 +1,4 @@
+import React from 'react'
 export default {
   name: 'bodyPortableText',
   type: 'array',
@@ -23,7 +24,30 @@ export default {
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
         // preference or highlighting by editors.
-        decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+        decorators: [
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' },
+          {
+            title: 'Underline',
+            value: 'u',
+            blockEditor: {
+              icon: () => <span style={{ 'text-decoration': 'underline' }}>U</span>,
+              render: props => (
+                <span style={{ 'text-decoration': 'underline' }}>{props.children}</span>
+              )
+            }
+          },
+          {
+            title: 'Strike',
+            value: 'strike',
+            blockEditor: {
+              icon: () => <span style={{ 'text-decoration': 'line-through' }}>R</span>,
+              render: props => (
+                <span style={{ 'text-decoration': 'line-through' }}>{props.children}</span>
+              )
+            }
+          }
+        ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
