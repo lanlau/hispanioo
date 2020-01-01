@@ -1,5 +1,0 @@
-/billets/:slug /blog/:slug 302
-/index.php/post/:year/:month/:day/:slug /blog/:slug 302
-/Categories/:slug /category/:slug 302
-/Tags/:slug /tag/:slug 302
-/article/:slug /page/:slug 302

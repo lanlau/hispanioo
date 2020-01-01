@@ -1,0 +1,5 @@
+/billets/:slug /blog/:slug 301
+/index.php/post/:year/:month/:day/:slug /blog/:slug 301
+/Categories/:slug /category/:slug 301
+/Tags/:slug /tag/:slug 301
+/article/:slug /page/:slug 301
