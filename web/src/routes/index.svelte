@@ -1,61 +1,62 @@
 <script context="module">
-	import client from '../sanityClient'
-	import SEO from '../components/SEO'
-	import JsonVisualizer from '../components/Json-visualizer'
-	import Hero from '../components/Hero'
-	import BlogList from '../components/blog/BlogList'
-	import PageList from '../components/page/PageList'
+  import client from "../sanityClient";
+  import SEO from "../components/SEO";
+  import JsonVisualizer from "../components/Json-visualizer";
+  import Hero from "../components/Hero";
+  import BlogList from "../components/blog/BlogList";
+  import PageList from "../components/page/PageList";
 
-	import blocksToHtml from '@sanity/block-content-to-html'
-	import serializers from '../components/serializers'
+  import blocksToHtml from "@sanity/block-content-to-html";
+  import serializers from "../components/serializers";
 
-	export async function preload({ params, query }) {
-
-		const settings=await client.fetch(`*[_id == "siteSettings"]
+  export async function preload({ params, query }) {
+    const settings = await client.fetch(`*[_id == "siteSettings"]
 			{
 				homePosts,  
  				"home_pages":home_pages[]->{title, description, "slug":slug.current, "image":image.asset->.url}
 			}[0]
-		`)
+		`);
 
-		const nbPosts=settings.homePosts;
-		const pages=settings.home_pages;
+    const nbPosts = settings.homePosts;
+    const pages = settings.home_pages;
 
-		const posts=await client.fetch(
-			`*[_type=="blog_post" && !defined(parent)]|order(sticky desc, publishedAt desc)[0...$nbPosts]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
-			`
-		,{nbPosts});
+    const posts = await client.fetch(
+      `*[_type=="blog_post" && !defined(parent)]|order(sticky desc, publishedAt desc)[0...$nbPosts]{title, categories[]->{title,"slug":slug.current}, sticky, publishedAt, excerpt,  "slug":slug.current, "mainImage":mainImage.asset->.url, author->{name, "slug":slug.current, "image":image.asset->.url}}
+			`,
+      { nbPosts }
+    );
 
-		return {
-			posts,
-			pages
-		}
-	}
+    return {
+      posts,
+      pages
+    };
+  }
 </script>
+
 <script>
-	import { getContext } from 'svelte';
-  $: defaults=getContext('defaults');
-	export let posts=[];
-	export let pages={};
+  import { getContext } from "svelte";
+  $: defaults = getContext("defaults");
+  export let posts = [];
+  export let pages = {};
 </script>
 
 <SEO
-    title={defaults.title}
-    description={defaults.description}
-    keywords={defaults.keywords.join(',')}
-    type="website"
-    
-    image={defaults.defaultImage}
-    thumb={defaults.defaultImage}
-    card="summary_large_image"
-/>
+  title={defaults.title}
+  description={defaults.description}
+  keywords={defaults.keywords.join(',')}
+  type="website"
+  image={defaults.defaultImage}
+  thumb={defaults.defaultImage}
+  card="summary_large_image" />
 
-<Hero image={defaults.homeHeroImage}/>
+<!--<Hero image={defaults.homeHeroImage}/>-->
 
-<div class="w-full  py-6 ">
+<div class="w-full py-6 ">
 
-	<PageList pages={pages} />
+  <PageList {pages} />
 
-	<h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-xl border-b">Derniers billets</h1>
-	<BlogList posts={posts} class="w-full lg:w-1/2  p-2 mb-10"/>
+  <h1 class="mt-10 mb-10 w-full md:mx-2 uppercase text-xl border-b">
+    Derniers billets
+  </h1>
+  <BlogList {posts} class="w-full lg:w-1/2 p-2 mb-10" />
 </div>
