@@ -46,10 +46,6 @@
       .fetch(query, { slug })
       .catch(err => this.error(500, err));
 
-    if (!post || Object.getOwnPropertyNames(post).length === 0) {
-      this.error("404", "Blog post not found");
-    }
-
     return {
       post: {
         ...post,

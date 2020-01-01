@@ -34,10 +34,6 @@
       .fetch(query, { slug })
       .catch(err => this.error(500, err));
 
-    if (Object.getOwnPropertyNames(post).length === 0) {
-      this.error("404", "Sorry, Page not found");
-    }
-
     return {
       post: {
         ...post,
