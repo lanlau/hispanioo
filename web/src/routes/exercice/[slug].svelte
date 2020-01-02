@@ -23,10 +23,6 @@
 
     exercice.questions = questions;
 
-    if (Object.getOwnPropertyNames(exercice).length === 0) {
-      this.error("404", "Blog post not found");
-    }
-
     return {
       defaults,
       exercice: {
