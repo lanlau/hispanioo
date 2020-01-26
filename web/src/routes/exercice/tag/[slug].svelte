@@ -1,16 +1,17 @@
 <script context="module">
-  import { getPaginationSettings } from "../../utils/pagination";
-  import client from "../../sanityClient";
-  import SEO from "../../components/SEO.svelte";
-  import Pagination from "../../components/Pagination.svelte";
-  import ExerciceList from "../../components/exercice/ExerciceList.svelte";
-  import JsonVisualizer from "../../components/Json-visualizer.svelte";
-  import CategoryTree from "../../components/exercice/CategoryTree.svelte";
+  import { getPaginationSettings } from "../../../utils/pagination";
+  import client from "../../../sanityClient";
+  import SEO from "../../../components/SEO.svelte";
+  import Pagination from "../../../components/Pagination.svelte";
+  import ExerciceList from "../../../components/exercice/ExerciceList.svelte";
+  import JsonVisualizer from "../../../components/Json-visualizer.svelte";
+  import CategoryTree from "../../../components/exercice/CategoryTree.svelte";
 
   export async function preload({ params, query }) {
-    const { page, subcategory, tag } = query;
+    const { page } = query;
+    const { slug } = params;
 
-    let searchedSubcategory = "present";
+    let searchedSubcategory = "";
 
     const paginationQueries = {
       subcategory: {
@@ -29,12 +30,12 @@
 				"pageTitle":*[_type=="exercice_tag" && slug.current ==$tag][0].name
 			
 			}`,
-        params: { tag }
+        params: { tag: slug }
       }
     };
 
-    let browseMode = "subcategory";
-    if (tag) browseMode = "tag";
+    let browseMode = "tag";
+    //if (tag) browseMode = "tag";
 
     let paginationSettings = await client.fetch(
       paginationQueries[browseMode].query,
@@ -42,7 +43,7 @@
     );
 
     paginationSettings = {
-      tag,
+      tag: slug,
       subcategory: searchedSubcategory,
       pageTitle: paginationSettings.pageTitle,
       ...getPaginationSettings(
@@ -150,6 +151,6 @@
       subcategory={paginationSettings.subcategory}
       per_page={paginationSettings.per_page}
       total={paginationSettings.total}
-      url="/exercice" />
+      url="/exercice/tag/{paginationSettings.tag}" />
   </section>
 </section>

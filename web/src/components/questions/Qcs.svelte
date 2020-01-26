@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import exerciceStore from "../../routes/exercice/exercice_store.js";
+  import exerciceStore from "../../routes/exercice/exercice/exercice_store.js";
 
   import PortableText from "../portableText/PortableText.svelte";
   import { createEventDispatcher } from "svelte";

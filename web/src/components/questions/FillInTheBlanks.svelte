@@ -1,5 +1,5 @@
 <script>
-  import exerciceStore from "../../routes/exercice/exercice_store.js";
+  import exerciceStore from "../../routes/exercice/exercice/exercice_store.js";
 
   import PortableText from "../portableText/PortableText.svelte";
   import { createEventDispatcher } from "svelte";
@@ -56,7 +56,9 @@
           $exerciceStore.answers[questionToCheck] &&
           $exerciceStore.answers[questionToCheck][blankId] &&
           solution.toLowerCase().trim() ===
-            $exerciceStore.answers[questionToCheck][blankId].texte.toLowerCase().trim()
+            $exerciceStore.answers[questionToCheck][blankId].texte
+              .toLowerCase()
+              .trim()
         ) {
           isCorrect = true;
           nbIsCorrect = nbIsCorrect + 1;
@@ -71,7 +73,8 @@
       };
     });
     const questionIsCorrect = $exerciceStore.blanks
-      ? nbIsCorrect === Object.keys($exerciceStore.blanks[questionToCheck]).length
+      ? nbIsCorrect ===
+        Object.keys($exerciceStore.blanks[questionToCheck]).length
       : false;
 
     exerciceStore.doAction("check", {
@@ -84,14 +87,19 @@
 
 <main id="main">
   <form>
-    <PortableText 
-      content={data.body} 
-      on:change={fillInBlank} 
-      on:mount={registerBlank}
-    />
+    <PortableText
+      content={data.body}
+      on:change={fillInBlank}
+      on:mount={registerBlank} />
     {#if !$exerciceStore.results || !$exerciceStore.results.hasOwnProperty($exerciceStore.currentQuestion._key)}
-      <button class="primary-button  mt-5" on:click|preventDefault type="submit" on:click={check}>Vérifier</button>
-    {/if}  
+      <button
+        class="primary-button mt-5"
+        on:click|preventDefault
+        type="submit"
+        on:click={check}>
+        Vérifier
+      </button>
+    {/if}
 
   </form>
 </main>

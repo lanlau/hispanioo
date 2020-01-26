@@ -1,8 +1,8 @@
 <script context="module">
-  import toHtml from "../../serialize/index.js";
-  import client from "../../sanityClient";
-  import SEO from "../../components/SEO.svelte";
-  import JsonVisualizer from "../../components/Json-visualizer.svelte";
+  import toHtml from "../../../serialize/index.js";
+  import client from "../../../sanityClient";
+  import SEO from "../../../components/SEO.svelte";
+  import JsonVisualizer from "../../../components/Json-visualizer.svelte";
 
   export async function preload({ params }) {
     const { slug } = params;
@@ -41,8 +41,8 @@
 
   import exerciceStore from "./exercice_store.js";
   import Results from "./results.svelte";
-  import { getComponent } from "../../components/questions/index.js";
-  import ExerciceInstruction from "../../components/exercice/ExerciceInstruction.svelte";
+  import { getComponent } from "../../../components/questions/index.js";
+  import ExerciceInstruction from "../../../components/exercice/ExerciceInstruction.svelte";
   export let exercice = { currentQuestion: {}, results: [] };
 
   let showResults = false;

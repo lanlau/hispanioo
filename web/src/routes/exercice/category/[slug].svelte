@@ -1,16 +1,17 @@
 <script context="module">
-  import { getPaginationSettings } from "../../utils/pagination";
-  import client from "../../sanityClient";
-  import SEO from "../../components/SEO.svelte";
-  import Pagination from "../../components/Pagination.svelte";
-  import ExerciceList from "../../components/exercice/ExerciceList.svelte";
-  import JsonVisualizer from "../../components/Json-visualizer.svelte";
-  import CategoryTree from "../../components/exercice/CategoryTree.svelte";
+  import { getPaginationSettings } from "../../../utils/pagination";
+  import client from "../../../sanityClient";
+  import SEO from "../../../components/SEO.svelte";
+  import Pagination from "../../../components/Pagination.svelte";
+  import ExerciceList from "../../../components/exercice/ExerciceList.svelte";
+  import JsonVisualizer from "../../../components/Json-visualizer.svelte";
+  import CategoryTree from "../../../components/exercice/CategoryTree.svelte";
 
   export async function preload({ params, query }) {
-    const { page, subcategory, tag } = query;
+    const { page, tag } = query;
+    const { slug } = params;
 
-    let searchedSubcategory = "present";
+    let searchedSubcategory = slug;
 
     const paginationQueries = {
       subcategory: {
@@ -150,6 +151,6 @@
       subcategory={paginationSettings.subcategory}
       per_page={paginationSettings.per_page}
       total={paginationSettings.total}
-      url="/exercice" />
+      url="/exercice/category/{paginationSettings.subcategory}" />
   </section>
 </section>

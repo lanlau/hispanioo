@@ -1,5 +1,5 @@
 <script>
-  import exerciceStore from "../../routes/exercice/exercice_store.js";
+  import exerciceStore from "../../routes/exercice/exercice/exercice_store.js";
   import { getContext } from "svelte";
   import { onMount, afterUpdate, onDestroy } from "svelte";
   import { createEventDispatcher } from "svelte";
