@@ -1,8 +1,8 @@
 <script context="module">
   import toHtml from "../../serialize/index.js";
   import client from "../../sanityClient";
-  import SEO from "../../components/SEO";
-  import JsonVisualizer from "../../components/Json-visualizer";
+  import SEO from "../../components/SEO.svelte";
+  import JsonVisualizer from "../../components/Json-visualizer.svelte";
 
   export async function preload({ params }) {
     const { slug } = params;

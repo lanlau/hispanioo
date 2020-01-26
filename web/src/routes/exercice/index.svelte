@@ -1,11 +1,11 @@
 <script context="module">
   import { getPaginationSettings } from "../../utils/pagination";
   import client from "../../sanityClient";
-  import SEO from "../../components/SEO";
-  import Pagination from "../../components/Pagination";
-  import ExerciceList from "../../components/exercice/ExerciceList";
-  import JsonVisualizer from "../../components/Json-visualizer";
-  import CategoryTree from "../../components/exercice/CategoryTree";
+  import SEO from "../../components/SEO.svelte";
+  import Pagination from "../../components/Pagination.svelte";
+  import ExerciceList from "../../components/exercice/ExerciceList.svelte";
+  import JsonVisualizer from "../../components/Json-visualizer.svelte";
+  import CategoryTree from "../../components/exercice/CategoryTree.svelte";
 
   export async function preload({ params, query }) {
     const { page, subcategory, tag } = query;

@@ -1,12 +1,12 @@
 <script context="module">
   import toHtml from "../../serialize/index.js";
-  import SEO from "../../components/SEO";
+  import SEO from "../../components/SEO.svelte";
   import client from "../../sanityClient";
 
-  import JsonVisualizer from "../../components/Json-visualizer";
+  import JsonVisualizer from "../../components/Json-visualizer.svelte";
 
-  import Hero from "../../components/Hero";
-  import PageList from "../../components/page/PageList";
+  import Hero from "../../components/Hero.svelte";
+  import PageList from "../../components/page/PageList.svelte";
 
   export async function preload({ params }) {
     // the `slug` parameter is available because

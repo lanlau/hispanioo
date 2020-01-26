@@ -1,5 +1,5 @@
 <script context="module">
-  	import JsonVisualizer from '../components/Json-visualizer'
+  	import JsonVisualizer from '../components/Json-visualizer.svelte'
 	import client from '../sanityClient'
 	
 	export async function preload() {

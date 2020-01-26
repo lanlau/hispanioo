@@ -1,10 +1,10 @@
 <script context="module">
   import client from "../../sanityClient";
   import toHTML from "../../serialize/index.js";
-  import SEO from "../../components/SEO";
-  import JsonVisualizer from "../../components/Json-visualizer";
+  import SEO from "../../components/SEO.svelte";
+  import JsonVisualizer from "../../components/Json-visualizer.svelte";
 
-  import Hero from "../../components/Hero";
+  import Hero from "../../components/Hero.svelte";
 
   const getDate = date => {
     if (!date) return "";

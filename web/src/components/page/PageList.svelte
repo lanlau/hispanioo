@@ -1,5 +1,5 @@
 <script>
-  import PageCard from "./PageCard";
+  import PageCard from "./PageCard.svelte";
 
   export let pages = [];
 </script>

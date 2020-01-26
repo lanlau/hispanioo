@@ -1,10 +1,10 @@
 <script context="module">
   import client from "../sanityClient";
-  import SEO from "../components/SEO";
-  import JsonVisualizer from "../components/Json-visualizer";
-  import Hero from "../components/Hero";
-  import BlogList from "../components/blog/BlogList";
-  import PageList from "../components/page/PageList";
+  import SEO from "../components/SEO.svelte";
+  import JsonVisualizer from "../components/Json-visualizer.svelte";
+  import Hero from "../components/Hero.svelte";
+  import BlogList from "../components/blog/BlogList.svelte";
+  import PageList from "../components/page/PageList.svelte";
 
   import blocksToHtml from "@sanity/block-content-to-html";
   import serializers from "../components/serializers";

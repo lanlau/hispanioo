@@ -1,6 +1,6 @@
 <script>
   import toHtml from "../../serialize";
-  import JsonVisualizer from "../../components/Json-visualizer";
+  import JsonVisualizer from "../../components/Json-visualizer.svelte";
   import exerciceStore from "./exercice_store.js";
   import { onMount } from "svelte";
   import { getContext } from "svelte";

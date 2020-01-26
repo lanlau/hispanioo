@@ -1,5 +1,5 @@
 <script>
-  import ExerciceCard from "./ExerciceCard";
+  import ExerciceCard from "./ExerciceCard.svelte";
   export let exercices = [];
   export let subcategory = "";
   export let tag = "";
