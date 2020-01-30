@@ -48,11 +48,11 @@ const File = props => {
   const title = props.node.title ? props.node.title : originalFilename;
 
   const href = props.url ? props.url : url;
-  return h(
-    "a",
-    { class: "file", target: "_blank", href: href },
-    "Afficher: " + title
-  );
+  return h("div", {
+    innerHTML: `
+      <a href="${href}" class="file" target="_blank">${title}</a> 
+      `
+  });
 };
 
 const iframe = props => {
