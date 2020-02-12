@@ -10,6 +10,8 @@
   import serializers from "../components/serializers";
 
   export async function preload({ params, query }) {
+    this.fetch("sitemap.xml");
+    
     const settings = await client.fetch(`*[_id == "siteSettings"]
 			{
 				homePosts,  
