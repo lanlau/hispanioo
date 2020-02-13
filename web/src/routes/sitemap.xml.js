@@ -13,27 +13,13 @@ fs.readdirSync("./src/routes").forEach(file => {
 });
 
 
-let data={
-    posts:[],
-    exercices:[]
-
-}
-
-client.fetch(
-    `{
-        "posts": *[_type=="blog_post" ]|order(sticky desc, publishedAt desc){"slug":slug.current},
-        "exercices": *[_type == "exercice" && !defined(private) ]|order(sticky desc, publishedAt desc) {"slug":slug.current},
-}`,
-    {  }
-  ).then((result)=>{
-    data=result
-  })
 
 
 
 
 
-const render = (pages, posts) => `<?xml version="1.0" encoding="UTF-8" ?>
+
+const render = (pages, posts, exercices) => `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   ${pages
     .map(
@@ -42,7 +28,7 @@ const render = (pages, posts) => `<?xml version="1.0" encoding="UTF-8" ?>
   `
     )
     .join("\n")}
-  ${data.posts
+  ${posts
     .map(
       post => `
     <url>
@@ -52,7 +38,7 @@ const render = (pages, posts) => `<?xml version="1.0" encoding="UTF-8" ?>
   `
     )
     .join("\n")}
-    ${data.exercices
+    ${exercices
         .map(
           exercice => `
         <url>
@@ -68,7 +54,22 @@ const render = (pages, posts) => `<?xml version="1.0" encoding="UTF-8" ?>
 export function get(req, res, next) {
   res.setHeader("Cache-Control", `max-age=0, s-max-age=${600}`); // 10 minutes
   res.setHeader("Content-Type", "application/rss+xml");
+    let data={
+    posts:[],
+    exercices:[]
 
-  const sitemap = render(pages, data);
-  res.end(sitemap);
+    }
+
+    client.fetch(
+    `{
+        "posts": *[_type=="blog_post" ]|order(sticky desc, publishedAt desc){"slug":slug.current},
+        "exercices": *[_type == "exercice" && !defined(private) ]|order(sticky desc, publishedAt desc) {"slug":slug.current},
+    }`,
+    {  }
+    ).then((result)=>{
+    data=result
+    const sitemap = render(pages, data.posts, data.exercices);
+    res.end(sitemap);
+    })
+
 }
