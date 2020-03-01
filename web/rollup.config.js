@@ -26,6 +26,7 @@ const onwarn = (warning, onwarn) =>
 
 export default {
   client: {
+    
     input: config.client.input(),
     output: config.client.output(),
     plugins: [
@@ -44,7 +45,7 @@ export default {
         browser: true,
         dedupe: ["svelte"]
       }),
-      commonjs(),
+      commonjs({sourcemap:false}),
 
       legacy &&
         babel({
@@ -95,7 +96,7 @@ export default {
       resolve({
         dedupe: ["svelte"]
       }),
-      commonjs()
+      commonjs({sourcemap:false})
     ],
     external: Object.keys(pkg.dependencies).concat(
       require("module").builtinModules ||

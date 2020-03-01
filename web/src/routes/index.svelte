@@ -62,3 +62,5 @@
   </h1>
   <BlogList {posts} class="w-full lg:w-1/2 p-2 mb-10" />
 </div>
+
+<a href="/list" style="color:#fff">list</a>
